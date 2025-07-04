@@ -1,0 +1,3264 @@
+www.technotrade.ua
+mail@technotrade.ua
++380 44 502 46 55
+Ukraine, 04082 Kyiv, Priorska str. 10
+PTS-1 controller
+over fuel dispensers and ATG systems
+for petrol stations
+TECHNICAL GUIDE
+(PCB board modification: PTS-1, revision: PTS-U5-v7)
+Review date: 12 June, 2024
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONTENT
+REVISION HISTORY ................................................................................................................................................ 6
+PURPOSE OF THE DOCUMENT .............................................................................................................................. 7
+TECHNICAL FEATURES ........................................................................................................................................... 8
+Appointment ................................................................................................................................................. 8
+General specification ..................................................................................................................................... 8
+SUPPORTED BRANDS OF FUEL DISPENSERS AND REGISTER METERS ................................................................... 9
+SUPPORTED BRANDS OF ATG SYSTEMS AND PROBES ........................................................................................ 10
+BOARD CONNECTORS AND INTERFACES ............................................................................................................. 11
+COMMUNICATION PORTS ................................................................................................................................... 12
+COMPLETE SET .................................................................................................................................................... 13
+CONNECTION TO POWER SUPPLY ....................................................................................................................... 14
+CONNECTION TO CONTROL SYSTEM................................................................................................................... 15
+INSTALLATION REQUIREMENTS FOR PETROL STATION ...................................................................................... 16
+CONNECTION TO FUEL DISPENSERS ................................................................................................................... 18
+CONNECTION TO ATG SYSTEMS AND PROBES .................................................................................................... 19
+SENDING OF PUMPS SALES DATA TO CONSOLES ............................................................................................... 20
+CONVERSION BETWEEN PUMPS PROTOCOLS .................................................................................................... 21
+CONVERSION BETWEEN ATG CONSOLES PROTOCOLS ....................................................................................... 22
+MONITORING OVER FUEL DISPENSERS AND TANKS ........................................................................................... 23
+FUEL DISPENSERS SALES DATA FOR ATG CONSOLES FOR RECONCILIATION ...................................................... 24
+PTS-1 CONTROLLER MULTI POS SYSTEMS OPERATION ...................................................................................... 25
+PTS-1 CONTROLLER CONFIGURATION AND TESTING UTILITY ............................................................................ 26
+General information .................................................................................................................................... 26
+Scheme of connections ............................................................................................................................... 27
+Starting PTS configuration utility ............................................................................................................. 27
+Tab “General” .............................................................................................................................................. 28
+Tab “Pumps configuration” ......................................................................................................................... 29
+Tab “Probes configuration” ......................................................................................................................... 30
+Tab “Parameters” ........................................................................................................................................ 31
+Tab “Control” ............................................................................................................................................... 33
+Tab “Logging” .............................................................................................................................................. 35
+Tab “Firmware update”
+............................................................................................................................... 40
+Tab “Diagnostics ”........................................................................................................................................ 44
+BUILT-IN PUMPs SIMULATOR ............................................................................................................................. 46
+BUILT-IN ATG PROBEs SIMULATOR ..................................................................................................................... 48
+PTS-1 controller API (APPLICATION PROGRAMMING INTERFACES) ................................................................... 50
+C and C++ API ............................................................................................................................................... 51
+C# PTS-1 controller configuration and testing utility .................................................................................. 53
+C# application .............................................................................................................................................. 55
+C# API ........................................................................................................................................................... 57
+Delphi API .................................................................................................................................................... 59
+Java API ........................................................................................................................................................ 61
+Python API ................................................................................................................................................... 63
+Visual Basic .NET PTS-1 controller configuration and testing utility ........................................................... 65
+Visual Basic .NET application ....................................................................................................................... 67
+Visual Basic .NET API .................................................................................................................................... 69
+PTS-1 controller COM-object for MS Windows OS ..................................................................................... 71
+www.technotrade.ua page 2 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Visual Basic 6.0 application ......................................................................................................................... 72
+PTS-1 controller UniPump communication protocol .................................................................................. 75
+PTS-1 CONTROLLER SOFTWARE DEVELOPMENT KIT (SDK) ................................................................................. 76
+PTS-1 controller SDK appointment .............................................................................................................. 76
+PTS-1 controller SDK structure .................................................................................................................... 77
+PTS-1 controller SDK technical features ...................................................................................................... 77
+Specification ............................................................................................................................................ 77
+PTS-1 controller SDK connections scheme .................................................................................................. 78
+UniPump pumps software simulator........................................................................................................... 79
+Purpose .................................................................................................................................................... 79
+Main view ................................................................................................................................................ 79
+Configuration ........................................................................................................................................... 80
+UniProbe ATG probes software simulator .................................................................................................. 82
+Purpose .................................................................................................................................................... 82
+Main view ................................................................................................................................................ 82
+Configuration ........................................................................................................................................... 83
+Open source PTS-1 controller .NET application (C# and VB.NET) ............................................................... 85
+Purpose .................................................................................................................................................... 85
+Start ......................................................................................................................................................... 86
+Configuration of PTS-1 controller ............................................................................................................ 86
+Main view ................................................................................................................................................ 88
+Settings of fuel point icons ...................................................................................................................... 89
+Reading of fuel point total counters ........................................................................................................ 90
+Settings .................................................................................................................................................... 91
+Displaying ATG systems probes states .................................................................................................... 92
+Settings of ATG probe icons .................................................................................................................... 93
+TiT.PTS classes help file ........................................................................................................................... 94
+PTS-1 controller test utilities ....................................................................................................................... 95
+Purpose .................................................................................................................................................... 95
+PTS terminal utility ...................................................................................................................................... 96
+Purpose .................................................................................................................................................... 96
+Step-by-step configuration of the PTS-1 controller SDK ............................................................................. 97
+Purpose .................................................................................................................................................... 97
+Step 1. Downloading of PTS-1 controller SDK software .......................................................................... 97
+Step 2. Assembling PTS-1 controller SDK cabling and connection to computer ..................................... 97
+Step 3. Starting of the PTS-1 controller configuration utility Pts_config.exe .......................................... 99
+Step 4. Configuration of pump ports ..................................................................................................... 100
+Step 5. Configuration of probes ports ................................................................................................... 101
+Step 6. Configuration of PTS-1 controller parameters .......................................................................... 102
+Step 7. Configuration of pumps parameters ......................................................................................... 103
+Step 8. Configuration of pumps software simulator ............................................................................. 104
+Step 9. Configuration of ATG probes software simulator ..................................................................... 106
+Step 10. Control over pumps and ATG probes in PTS-1 controller configuration and testing utility ... 107
+Step 11. Configuration of PTS-1 controller .NET application for control over pumps and ATG probes 109
+EXAMPLES OF FUEL DISPENSERS CONNECTION SCHEMES ............................................................................... 115
+Gilbarco dispenser connection scheme..................................................................................................... 116
+Wayne Dresser dispenser connection scheme (RS-485 interface) ........................................................... 119
+Wayne Dresser dispenser connection scheme (current loop interface) ................................................... 120
+Tatsuno (Japan) dispenser connection scheme ........................................................................................ 121
+www.technotrade.ua page 3 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tatsuno Europe (former Benc) dispenser connection scheme ................................................................. 122
+Tokheim dispenser connection scheme .................................................................................................... 123
+Tokheim dispenser connection scheme (RS-485 interface) ...................................................................... 126
+Tokheim India dispenser connection scheme ........................................................................................... 128
+Nuovo Pignone dispenser connection scheme (RS-485 interface) ........................................................... 129
+Nuovo Pignone dispenser connection scheme (4-wire current loop interface) ....................................... 130
+Logitron dispenser connection scheme (3-wire current loop interface) .................................................. 131
+Bennett dispenser connection scheme (RS-485 interface) ....................................................................... 132
+Bennett dispenser connection scheme (2-wire current loop interface) ................................................... 133
+Batchen Email dispenser connection scheme ........................................................................................... 134
+Scheidt & Bachmann T20 dispenser connection scheme .......................................................................... 135
+Coptron dispenser connection scheme ..................................................................................................... 136
+Midco dispenser connection scheme ........................................................................................................ 137
+Petrotec dispenser connection scheme .................................................................................................... 138
+Galileo dispenser connection scheme ....................................................................................................... 139
+Prowalco dispenser connection scheme ................................................................................................... 140
+Emgaz Dragon / Fornovo LPG dispenser with EsiWelma pumphead connection scheme........................ 141
+Maser dispenser connection scheme ........................................................................................................ 142
+Petposan-S4 / Meksan-S4 / Europump-S4 / Yenen dispensers connection scheme ................................ 143
+Yenen dispensers connection scheme ...................................................................................................... 144
+Petposan-Beta / Europump-Beta dispensers connection scheme ............................................................ 145
+EuroPump dispenser connection scheme ................................................................................................. 146
+Mekser dispenser connection scheme ...................................................................................................... 147
+Fuelsis dispenser connection scheme ....................................................................................................... 148
+Mepsan Unimep dispenser connection scheme ....................................................................................... 149
+Meksan / Wayne SU86 dispenser connection scheme ............................................................................. 150
+Baransay dispenser connection scheme ................................................................................................... 151
+2A LPG dispenser connection scheme ....................................................................................................... 152
+Falcon dispenser connection scheme........................................................................................................ 153
+Tiger dispenser connection scheme .......................................................................................................... 154
+Korea EnE (LG EnE) dispenser connection scheme ................................................................................... 155
+Dong Hwa Prime dispenser connection scheme ....................................................................................... 156
+Gallagher (PEC) dispenser connection scheme ......................................................................................... 157
+Compac dispenser connection scheme ..................................................................................................... 158
+Safe dispenser connection scheme ........................................................................................................... 159
+MS Gas dispenser connection scheme ...................................................................................................... 160
+Shibata dispenser connection scheme ...................................................................................................... 161
+Aspro Develco dispenser connection scheme ........................................................................................... 162
+HongYang dispenser connection scheme .................................................................................................. 163
+Lanfeng dispenser connection scheme ..................................................................................................... 165
+Sanki dispenser connection scheme ......................................................................................................... 166
+Datian Machines dispenser connection scheme ....................................................................................... 168
+Eaglestar dispenser connection scheme ................................................................................................... 169
+Blue Sky dispenser connection scheme..................................................................................................... 170
+Censtar dispenser connection scheme ...................................................................................................... 171
+Knipflow dispenser connection scheme .................................................................................................... 172
+Changlong dispenser connection scheme ................................................................................................. 173
+Zcheng Genuine Machines dispenser connection scheme ....................................................................... 174
+Bailong dispenser connection scheme ...................................................................................................... 175
+www.technotrade.ua page 4 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Topaz dispenser connection scheme ........................................................................................................ 176
+Shelf dispenser connection scheme .......................................................................................................... 177
+UniCon dispenser connection scheme ...................................................................................................... 178
+Mechanical dispensers connection scheme .............................................................................................. 179
+EXAMPLES OF ATG SYSTEMS CONNECTION SCHEMES ..................................................................................... 180
+Gilbarco Veeder Root TLS consoles connection scheme ........................................................................... 181
+Start Italiana console connection scheme ................................................................................................. 181
+Start Italiana wired probes connection scheme ........................................................................................ 182
+Start Italiana wireless probes connection scheme .................................................................................... 182
+Alisonic wired probes connection scheme ................................................................................................ 183
+Alisonic wireless probes connection scheme ............................................................................................ 183
+Struna ATG system connection scheme .................................................................................................... 184
+OPW Site Sentinel ATG system connection scheme ................................................................................. 184
+Colibri ATG system connection scheme .................................................................................................... 185
+Fafnir ATG system connection scheme ..................................................................................................... 185
+Hectronic ATG probes connection scheme ............................................................................................... 186
+Vega radar level meters ............................................................................................................................. 186
+Windbell magnetostrictive probes connection scheme ............................................................................ 187
+North Falcon wired probes connection scheme ....................................................................................... 188
+North Falcon wireless probes connection scheme.................................................................................... 188
+PTS-1 CONTROLLER PCB BOARD ....................................................................................................................... 189
+PCB board top view ................................................................................................................................... 189
+PCB board bottom view ............................................................................................................................. 189
+Board dimensions ...................................................................................................................................... 190
+RS-232 PORT CABLE CONNECTOR ..................................................................................................................... 191
+CERTIFICATES .................................................................................................................................................... 192
+ORDER INFORMATION ...................................................................................................................................... 193
+www.technotrade.ua page 5 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+REVISION HISTORY
+REV DATE BY SECTIONS DESCRIPTION
+R01 2017.11.21 Evgeniy
+Vasyliev
+All First release of PTS-1 board revision
+R02 2018.06.09 Evgeniy
+Vasyliev
+All Minor fixes
+R03 2018.08.15 Evgeniy
+Vasyliev
+All Modification of PTS PCB board
+R04 2018.11.17 Evgeniy
+Vasyliev
+Supported communication protocols,
+examples of connection schemes
+Updated list of supported communication
+protocols of fuel dispensers and ATG systems,
+added examples of connection to fuel dispensers
+and ATG systems
+R05 2019.03.01 Evgeniy
+Vasyliev
+Supported input communication protocols Communication with PTS-1 controller using pump
+and ATG consoles protocols
+R06 2020.03.21 Evgeniy
+Vasyliev
+General information update Regular document review
+R07 2020.07.18 Evgeniy
+Vasyliev
+General information update Regular document review
+R08 2023.02.24 Evgeniy
+Vasyliev
+PTS-1 controller SDK PTS-1 controller SDK structure updated
+www.technotrade.ua page 6 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PURPOSE OF THE DOCUMENT
+This Technical Guide is intended for studying of PTS-1 controller over fuel dispensers and ATG systems for
+petrol stations. It contains basic information regarding its
+− technical characteristics
+− supported communication protocols of fuel dispensers and ATG systems
+− board interfaces and connectors
+− configuration
+− supplied application programming interfaces (API)
+− description, configuration and connection of PTS-1 controller software development kit (SDK)
+− schemes of connection to fuel dispensers and ATG systems
+− board schematics
+− cabling
+Information regarding connection to specific fuel dispensers and correspondent configuration of PTS-1
+controller can be received upon request to Technotrade LLC company.
+Given technical manual describes the latest hardware version of the PTS-1 controller board (PTS-1
+controller PCB board modification PTS-1). Technical manuals of older versions of the PTS-1 controller board
+(PTS-U5, PTS-U3, PTS-U2 and PTS-U) with their corresponding connection schemes can be downloaded
+from PTS-1 controller web-page: https://www.technotrade.ua/fuel-pump-controller.html.
+Due to a reason that PTS-1 controller firmware is constantly being developed in direction of improvement
+of its possibilities, changes are possible in final version, which are not described in given Technical Guide.
+During the system development process given Technical Guide is also expanded and updated and new
+chapters are added. Latest version of this Technical Guide can be downloaded from the PTS-1 controller
+web-page: https://www.technotrade.ua/fuel-pump-controller.html.
+Technotrade LLC hereby permits reproduction of this document as may be required by any of the
+customers or OEMs wishing to use it.
+This document has been carefully prepared and is believed to be accurate. However, Technotrade LLC, its
+employees and its agents do not assume responsibility for its use either directly or indirectly. Technotrade
+LLC shall not be liable for technical or editorial errors or omissions which may appear in this document.
+Technotrade LLC reserves a right to make changes to this document at any time without notice. Prospective
+users of this document should contact Technotrade LLC at the time they wish to use PTS-1 controller
+together with their products to become aware of any updates that may apply.
+In case if you find any mistakes, omissions in this document or have any suggestions on improvements to
+this document, please feel free to e-mail them to our support mailbox: support_1a@technotrade.ua. We
+will be grateful to you for this valuable information.
+All technical questions regarding the PTS-1 controller are welcome to be asked on support mailbox:
+support_1a@technotrade.ua. Our support team will be glad to help you.
+Also, you can call to us or visit us on:
+Technotrade LLC
+Ukraine, 04114 Kiev, Priorska str. 10, office 1
+Tel: +38-044-502-46-55, +38-044-502-46-77
+Web: www.technotrade.ua
+Mail: mail@technotrade.ua
+www.technotrade.ua page 7 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+TECHNICAL FEATURES
+Appointment
+PTS-1 controller over fuel dispensers and ATG (automatic tank gauge) systems for petrol stations serves
+as a protocols converter. It knows communication protocols of a great variety of fuel dispensers and ATG
+probes and allows control over any of them in exactly the same way using its own input communication
+protocol or popular pumps and ATG systems communication protocols. POS system (cash register, payment
+terminal) should not matter what is the brand of fuel dispenser or ATG system connected – it simply
+communicates to the PTS-1 controller the same way regardless the brand of fuel dispensers and ATG
+systems used, PTS-1 controller undertakes all work on communication with fuel dispensers and ATG
+systems using their native communication protocol and takes into account all their peculiarities.
+This completely simplifies work for a POS system developer: by having implemented input common
+communication protocol of PTS-1 controller the POS becomes able to provide control over any of fuel
+dispensers and ATG systems supported by PTS-1 controller. PTS-1 controller itself converts input
+communication protocol into proprietary communication protocols of fuel dispensers and ATG systems.
+Thus, the time required for development of POS system for petrol stations is significantly reduced.
+PTS-1 controller can be called a forecourt controller and can be used together with POS systems, cash
+registers, OPTs (outdoor payment terminals) and other control systems for petrol stations in order to
+provide control over fuel dispensers, LPG (liquified petroleum gas) dispensers, CNG (compressed natural
+gas) dispensers and various brands of ATG systems at petrol stations and storage depots.
+PTS-1 controller is supplied with a rich set of APIs (application programming interfaces) developed under
+most popular programming languages and environments in order to provide comfortable and quick
+implementation of the PTS-1 controller into control systems for petrol stations (POS system, cash register,
+OPT terminal, etc).
+General specification
+## PARAMETER VALUE
+1 Power supply voltage 12 V DC
+2 Current consumption 400 mA max
+3 Temperature range -40°C ÷ +80°C
+4 Weight 120 g
+5 Overall dimensions 85 x 58 x 30 mm
+www.technotrade.ua page 8 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+SUPPORTED BRANDS OF FUEL DISPENSERS AND REGISTER METERS
+1. 2A
+2. ACTRONIC
+3. ADAST (ADAMOV SYSTEMS)
+4. AG WALKER
+5. AGIRA
+6. ANGI International
+7. ARIEL
+8. ASPRO
+9. ASSYTECH
+10. ASTRON
+11. AZT
+12. BAILONG
+13. BARANSAY
+14. BATCHEN
+15. BENNETT
+16. BLUE SKY
+17. CENSTAR
+18. CETIL
+19. CFT Clean Fuel
+20. CHANGLONG
+21. COMPAC
+22. COPTRON
+23. CORITEC
+24. DATIAN MACHINES
+25. DEM G. SPYRIDES
+26. DEVELCO
+27. DIGITAL FLOW
+28. DINT
+29. DONG HWA PRIME
+30. DURULSAN
+31. EAGLESTAR
+32. ECOTEC
+33. EHAD
+34. EKOSIS
+35. EMGAZ DRAGON
+36. EPCO
+37. ESIWELMA
+38. EUROPUMP
+39. FALCON LPG
+40. FLOW
+41. FORNOVO GAS
+42. FUELQUIP
+43. FUELSIS
+44. FUREN HIGHTECH
+45. GALILEO
+46. GASLIN
+47. GERKON
+48. GESPASA
+49. GILBARCO
+50. GREENFIELD
+51. HAKO
+52. HITACHI
+53. HONG YANG
+54. IFSF (dispensers)
+55. IMW
+56. INTERMECH
+57. IPT
+58. JANASI
+59. JAPAN ENERJUMP
+60. JAPAN TECH
+61. KAISAI
+62. KALVACHA
+63. KIEVNIIGAZ
+64. KOREA ENE
+65. KPG-2
+66. KRAUS
+67. KRIPFLOW
+68. KWANGSHIN
+69. LAFON
+70. LANFENG
+71. LAOXU
+72. LEARED
+73. LIQUID CONTROLS
+74. LG ENE
+75. LOGITRON
+76. MAIDE
+77. MASER
+78. MEKSAN / WAYNE SU86
+79. MEKSER
+80. MEPSAN
+81. MIDCO
+82. MIDCOM
+83. MITHRA FUELING
+84. MM PETRO (ZAP)
+85. MOTOGAZ
+86. MOUNTAIN CHINA
+87. MRT
+88. MS GAS
+89. MUXTRONICS
+90. NARA
+91. NET FUN LEADER
+92. NUOVA MIGAS
+93. NUOVO PIGNONE
+94. ONSUN
+95. ORCA
+96. PEC (GALLAGHER FUEL
+SYSTEMS)
+97. PARKER
+98. PECO
+99. PEGASUS
+100. PETPOSAN
+101. PETROEQUIP
+102. PETROMECCANICA
+103. PETROTEC
+104. PROWALCO
+105. PUMP CONTROL
+106. PUMPTRONICS
+107. REAL-TECH
+108. RIX
+109. S.A.M.P.I.
+110. SAFE
+111. SALZKOTTEN
+112. SANKI
+113. SATAM EQUALIS S
+114. SAVEL
+115. SEA BIRD
+116. SHELF
+117. SCHEIDT&BACHMANN
+118. SHIBATA
+119. SLAVUTICH
+120. SOMO PETRO
+121. STABILIZING
+122. STAR
+123. STAR-HIGH
+124. TATSUNO (JAPAN)
+125. TATSUNO EUROPE
+(FORMER BENC)
+126. TATTAN
+127. TAURUS
+128. TEKSER
+129. TERABAYT TEXNO SERVIS
+130. TIGER
+131. TOKHEIM
+132. TOKHEIM INDIA
+133. TOKICO
+134. TOMINAGA
+135. TOPAZ
+136. TOTAL CONTROL SYSTEMS
+137. TRANSPONDER
+138. TRUE TECH
+139. UCAR ELEKTRIC
+140. UNICON-TIT
+141. VANZETTI
+142. WAYNE DRESSER
+143. WAYNE PIGNONE
+144. WELLDONE MACHINES
+145. WERTCO COMPANY TEC
+146. WINTEC ENERGY
+147. YENEN
+148. ZCHENG GENUINE
+MACHINES
+149. ZHONGSHENG
+* Some dispensers may demand using interface converter boards to RS-485 interface (depends on
+electronics of used pumphead in dispenser).
+www.technotrade.ua page 9 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+SUPPORTED BRANDS OF ATG SYSTEMS AND PROBES
+1. ACCU
+2. ALISONIC
+3. ANHUI QIDIAN
+4. ASSYTECH
+5. BLUESKY
+6. CENSTAR
+7. DUT-E
+8. EAGLESTAR
+9. EBW
+10. EMERSON ROSEMOUNT
+11. ENRAF
+12. ESCORT FD
+13. FAFNIR
+14. FRANKLIN FUELING
+15. GAMICOS
+16. GILBARCO VEEDER ROOT
+17. HECTRONIC
+18. HOLYKELL
+19. HONG YANG
+20. HUMANENTEC
+21. IFSF (ATG systems)
+22. INCON
+23. KACISE
+24. KANGYU
+25. KUNLUN
+26. LABKO
+27. LIGO
+28. MECHATRONICS
+29. MEPSAN UNIMEP
+30. METRIKEMP
+31. MTS ATG SENSORS
+32. ND
+33. NORTH FALCON
+34. O.L.E.
+35. OKET
+36. OMNICOMM
+37. OMNTEC
+38. OPW
+39. PHOENIX
+40. QINGDAO GUIHE
+41. RCS EPSILON
+42. RIKA
+43. SANSHEN
+44. SBEM
+45. SENSOR
+46. SINOTECH
+47. SKE LEVEL GAUGE
+48. START ITALIANA
+49. STRUNA
+50. TECHNOTON
+51. TENET
+52. UBTECK
+53. UNIPROBE
+54. VEGA
+55. VEPAMON
+56. WINDBELL
+57. XT SENSORS
+58. ZCHENG GENUINE
+MACHINES
+* Communication parameters (baud rate, parity control, data and stop bits) are configured for probe ports
+in PTS-1 controller independently from used communication protocol
+www.technotrade.ua page 10 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+BOARD CONNECTORS AND INTERFACES
+PTS-1 controller is supplied together with terminal blocks for each of the connectors for screwing of
+connection wires.
+www.technotrade.ua page 11 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+COMMUNICATION PORTS
+PORT NAME INTERFACE APPOINTMENT
+PC PORT RS-232
+(3 wires: TxD, RxD, Gnd)
+Connection with control system (POS system, cash
+register, OPT terminal, etc).
+It is recommended to use shielded cable.
+Pump
+port 1
+RS-485
+(2 wires: line A, line B)
+Connection with fuel dispensers using configurable
+proprietary communication protocol (up to 16 fuel
+dispensers). It is required to use shielded cable, which
+shield is connected to ground on the side of connected
+pump.
+Pump
+port 2
+RS-485
+(2 wires: line A, line B)
+Connection with fuel dispensers using configurable
+proprietary communication protocol (up to 16 fuel
+dispensers).
+It is required to use shielded cable, which shield is
+connected to ground on the side of connected pump.
+PUMP PORTS
+Pump
+port 3
+RS-485
+(2 wires: line A, line B)
+Connection with fuel dispensers using configurable
+proprietary communication protocol (up to 16 fuel
+dispensers).
+It is required to use shielded cable, which shield is
+connected to ground on the side of connected pump.
+Pump port
+4
+RS-485
+(2 wires: line A, line B)
+Connection with fuel dispensers using configurable
+proprietary communication protocol (up to 16 fuel
+dispensers).
+It is required to use shielded cable, which shield is
+connected to ground on the side of connected pump.
+DISP port
+(RS-485)
+RS-485
+(2 wires: line A, line B)
+1. PTS-1 controllers interconnection (up to 16 PTS-1
+controllers) for simultaneous control over the same
+fuel dispensers and ATG systems
+2. Connection with ATG systems (probes) using
+configurable proprietary com. protocol (up to 16 ATG
+probes)
+It is required to use shielded cable, which shield is
+connected to ground on the side of connected ATG
+system (probe).
+DISP port
+(RS-232)
+RS-232
+(3 wires: TxD, RxD, Gnd)
+Connection with ATG system (console) using configurable
+proprietary communication protocol (up to 16 ATG
+probes).
+PROBE PORTS
+LOG port
+RS-232
+(3 wires: TxD, RxD, Gnd)
+1. 2. Connection with ATG system (console) using
+configurable proprietary communication protocol (up
+to 16 ATG probes)
+Writing of operation log of PTS-1 controller interaction
+with fuel dispensers, ATG systems, PTS interconnection
+USER port RS-232
+(3 wires: TxD, RxD, Gnd)
+Connection with ATG system (console) using configurable
+proprietary communication protocol (up to 16 ATG
+probes).
+NOTE!
+It is strictly prohibited to connect any of the cables’ shields to ports of PTS-1 controller.
+Manufacturer reserves a right to bring in modifications in construction of controller for improving of its
+technical and functional characteristics, so supplied version of controller may differ from described in given
+technical guide.
+Warning! This is a class A product. In a domestic environment this product may cause radio interference in
+which case the user may be required to take adequate measures.
+www.technotrade.ua page 12 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+COMPLETE SET
+Depending on the order code (see section “Order information”) PTS-1 controller can be supplied either in a
+view of electrical board (variant of controller supply PTS1-PCB-z), or installed in a mounting box with cables
+inputs and a power switching button (variant of controller supply PTS1-BOX-z).
+Variant of controller supply in a view of electrical board (PTS1-PCB-z)
+Variant of controller supply installed in a metal box with cables inputs and a power switching button
+(variant of controller supply PTS1-BOX-z)
+www.technotrade.ua page 13 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONNECTION TO POWER SUPPLY
+It is recommended to use non-shielded cable at connection to power supply. It is recommended to install a
+ferrite ring core TDK ZCAT 2235-1030 on the power supply cable with 1 coil inside (as shown on image
+below).
+Ferrite ring coil should be located on the power supply cable nearby (up to 3 cm) the power supply
+connector of controller board (in case if controller is supplied in a view of electrical board, variant of supply
+PTS1-PCB-z) or nearby the power supply cable input of box (in case if controller is supplied in metal box,
+variant of supply PTS1-BOX-z). After placing a ferrite ring on the power supply cable, it is required to check
+correctness of its installation, it is possible to check it by moving ferrite ring along the power supply cable
+by pushing power supply cable into it from one side and pulling the cable from another side of the ferrite
+ring.
+www.technotrade.ua page 14 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONNECTION TO CONTROL SYSTEM
+Connection to the control system (POS system, cash register, OPT terminal, etc) is made through a PC port,
+which has RS-232 interface (3 wires: TxD, RxD, Gnd).
+Scheme of connections:
+In case if the control system does not have a COM-port – it is possible to use any type of converter to COM-
+port (like USB-to-COM, Ethernet-to-COM, Bluetooth-to-COM, other converters).
+Communication with PTS-1 controller is made using commands and responses described in UniPump
+communication protocol (own proprietary protocol of Technotrade LLC) – see document “UniPump
+communication protocol specification for PTS-1 controller over fuel dispensers and ATG systems” for more
+information. Thus, PTS-1 controller provides conversion of the common communication protocol UniPump
+into various proprietary communication protocols of fuel dispensers and ATG systems.
+www.technotrade.ua page 15 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+INSTALLATION REQUIREMENTS FOR PETROL STATION
+WARNING! Manufacturer guarantees reliable and stable operation of products only at compliance with
+below requirements. In case of absence of uninterruptible power supply or incorrect wiring of products
+to it any claims to malfunction of software are not accepted.
+1. Requirements to power supply
+The described products come into structure of control system (POS) for petrol station. Power supply of the
+products should be done from a separate power supply with built-in filter of radio frequency interferences
+and limiter of high voltage pulse interferences. Power supply should have a safety factor of 1.5.
+At emergency switching off the power supply or in case of power voltage exceeding its permitted ranges
+the products can switch off with loss or corruption of data and possible damage of hardware and software.
+Power supply of all electronic blocks of POS and electronic pumpheads of dispensers, which are connected
+through information lines, should be made from single common uninterruptible power supply source (UPS).
+Connection of other devices to given UPS is strictly prohibited. UPS should be of continuous action (online)
+and work with double conversion with output voltage regulation. UPS should have a safety factor of 1.5.
+Filter of radio frequency interferences and limiter of high voltage pulse interferences should be used for
+feeding equipment from UPS.
+Supply of electronic pumpheads of dispensers should be made from the UPS unit using 3-wires scheme
+with isolated neutral through dedicated two-pole breaker for each dispenser. Connection of other parts of
+dispenser to UPS unit (expect electronic pumpheads) is strictly prohibited.
+UPS unit should be connected to a separate three-pole socket fed through the three-wire feeder (phase,
+neutral, ground wires) with insulated neutral from a dedicated circuit breaker of switchboard. Feeder
+coming from the switchboard to the socket should located not closer than 0.3 meters to other feeders. The
+socket should be located at a distance of not more than 1 meter away from the POS. Phase wire of the
+feeder should not have any other consumer, which are sources of interferences (for example motors).
+For protection of POS and UPS from secondary effects of atmospheric electricity it is required to install
+high-voltage arresters (dischargers) at the transformer substation or on poles of power lines.
+2. Requirements to grounding
+In the switchboard the ground wire of feeder socket should be connected to the grounding screw, which
+should be connected by means of welding with a protection grounding circuit of petrol station by steel wire
+with a diameter of not less than 5 mm.
+Protection grounding circuit of petrol station should correspond to safety requirements and be separated
+from the station lightning protection circuit. Distance from the nearest electrode of protection grounding
+circuit to electrode of lightning protection circuit must be at least 10 meters. Resistance of the protection
+grounding circuit should be not more than 4 Ohms and must be confirmed by the test report. Length of
+wires from the switchboard to the nearest electrode of protection grounding circuit should not exceed 15
+meters.
+3. Requirements to laying of cable communications
+Laying of power and information wires to dispensers should be done in separate pipes with distance of not
+less than 0.3 meters between each other. For informational wires (current loops, RS-485, other interfaces)
+www.technotrade.ua page 16 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+it is recommended to use shielded twisted-pair cables (recommended type – FTP CAT 5E). The cable shield
+must be connected to the ground connector on one side only – on the side of the dispenser.
+www.technotrade.ua page 17 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONNECTION TO FUEL DISPENSERS
+PTS-1 controller can simultaneously control up to 16 fueling places (16 sides of 1-sided dispensers or 8 sides
+of 2-sided fuel dispensers or mixture of 1-sided and 2-sided dispensers) that use up to 4 various
+communication protocols (each of the pump ports can be adjusted to a separate communication protocol
+and baud rate and can connect up to 16 fueling places) (see section “Examples of connection to fuel
+dispensers”).
+So, you can connect in total 16 pumps to the same pump port or you can distribute all the 16 pumps
+between the any of the pump ports.
+NOTE: if there are less than 4 various types of fuel dispensers at petrol station (which use various
+communication protocols) then it is recommended to distribute fuel dispensers between 4 PTS-1 controller
+ports in approximately equal quantities in order to minimize delays between fuel dispensers querying in the
+same pump port.
+www.technotrade.ua page 18 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONNECTION TO ATG SYSTEMS AND PROBES
+PTS-1 controller can simultaneously control up to 16 ATG probes (gauges) (separate probes or probes
+connected to ATG systems / consoles) that use up to 3 various communication protocols (each of the probe
+ports can be adjusted to a separate communication protocol and baud rate and connect up to 16 ATG
+probes) (see section “Examples of connection to ATG systems”).
+NOTE: DISP port provides a possibility to connect ATG system (probes) over either RS-485 or RS-232
+interfaces – interface is selected using a configuration parameter in PTS-1 controller.
+www.technotrade.ua page 19 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+SENDING OF PUMPS SALES DATA TO CONSOLES
+At communication to ATG consoles PTS-1 controller can be used for sending fuel dispensers sales data to
+consoles in order to make console provide tanks reconciliation reports and automatic tanks calibration:
+www.technotrade.ua page 20 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONVERSION BETWEEN PUMPS PROTOCOLS
+In case if POS system already knows some open communication protocol of dispensers then it can use PTS-
+1 controller for its conversion to any other pump protocols without any additional integration.
+Communication of PTS-1 controller with control system (POS system, cash register, OPT terminal, etc) for
+provision of control over dispensers can be done using popular open pump protocols. At this connection is
+made through one of the pump ports, which has RS-485 interface (2 wires: A, B). Any of the pump ports can
+be configured to work as input port for communication with control system.
+Scheme of connections:
+In this case the control system should know pump communication protocol. PTS-1 controller in this case
+serves as a protocols converter: converts input pump protocol into any other supported pump protocols.
+At this control over pumps can be done in parallel from control systems connected through pump port and
+PC port, PTS-1 controller internally tracks which control system locks control over dispensers:
+www.technotrade.ua page 21 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CONVERSION BETWEEN ATG CONSOLES PROTOCOLS
+In case if POS system already knows some open communication protocols of ATG consoles then it can use
+PTS-1 controller for its conversion to any other ATG console or probe protocols without any additional
+integration.
+Communication of PTS-1 controller with control system (POS system, cash register, OPT terminal, etc) for
+getting measurement data from probes can be done using popular open ATG console protocols. At this
+connection is made through one of the probe ports, which has RS-232 interface (3 wires: TxD, RxD, Gnd) or
+RS-485 interface (2 wires: A, B). Any of the probe ports can be configured to work as input port for
+communication with control system.
+Scheme of connections:
+In this case the control system should know communication protocol of ATG console. PTS-1 controller in
+this case serves as a protocol’s converter: converts input ATG console protocol into any other supported
+ATG consoles and probe protocols.
+www.technotrade.ua page 22 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+MONITORING OVER FUEL DISPENSERS AND TANKS
+In case if there is an existing POS system already installed on the station PTS-1 controller allows to monitor
+operation of the fuel dispensers and tanks (and optionally to make sales when required). At this PTS-1
+controller is connected between existing POS system and fuel dispensers and ATG console (tank probes),
+PTS-1 controller communicates with fuel dispensers and ATG console (probes) using their proprietary
+communication protocols and with POS system – using open communication protocols for pumps and ATG
+console. Monitoring system can connect to PC port of PTS-1 controller and get all data of fuel dispensers
+sales and tanks real time, at this it can also provide control over the dispensers when required.
+Scheme of connections:
+www.technotrade.ua page 23 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+FUEL DISPENSERS SALES DATA FOR ATG CONSOLES FOR RECONCILIATION
+PTS-1 controller can be applied for listening of communication exchange between POS system and
+dispensers and sending of dispensers’ transactions to the ATG console for provision of tanks’ reconciliation
+and automatic calibration. Installation of the PTS-1 controller between POS system and dispensers solves
+this problem without any additional integration from the side of POS system.
+Additionally, it is possible to apply PTS-1 controller inside the casing of the ATG console. At this a scheme of
+connection specified on the above image is saved, but at some extra development of the console GUI it is
+possible to make a completely new function of the console – provision of monitoring and control over
+dispensers from the console in parallel with POS system. As a result, the console becomes a common
+system of control, monitoring and account providing:
+- connection of console to any POS system, OPT terminal for provision of control over dispensers
+- possibility to connect various brands of probes, which communication protocols are not supported by
+the console
+- transmission from PTS-1 controller to console data on sales transaction of dispensers for formation of
+reconciliation reports and automatic tanks calibration
+- additional possibility to monitor and control fuel dispenser operation from the console display in
+parallel to POS system already installed at petrol station (needs update of console software)
+Scheme of connections:
+www.technotrade.ua page 24 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 CONTROLLER MULTI POS SYSTEMS OPERATION
+PTS-1 controller allows a possibility to lead management over the same fuel dispensers from several POS
+systems and share ATG probes measurement values between several interconnected PTS-1 controllers.
+Thus every interconnected PTS-1 controller is able to provide control over any of the connected fuel
+dispensers and know ATG system measurement data of every other interconnected PTS-1 controller.
+NOTE! In order to enable PTS-1 controller interconnection interface of DISP port should be configured to
+RS-485 in configuration parameters of PTS-1 controller and DISP port should not be configured for any ATG
+system (see section “PTS-1 controller configuration”).
+Configuration:
+At necessity to organize several working places at petrol station (several POS systems) each of the POS
+systems should have its own PTS-1 controller connected. PTS-1 controllers should be interconnected with
+each other through a dispatcher PTS port (DISP port on RS-485 interface) and also connected with fuel
+dispensers. Thus control over each fuel dispenser at petrol station can be made from every POS system and
+each PTS-1 controller will know measurement data of every ATG probe connected to any of the
+interconnected PTS-1 controllers. At authorization of a fuel dispenser from one POS system the fuel
+dispenser becomes locked by PTS-1 controller of this POS system and while it is locked all other POS
+systems can not control over given fuel dispenser, they can only monitor current state of the fuel dispenser.
+When operation of given POS system is finished with given fuel dispenser, PTS-1 controller of this POS
+system unlocks the fuel dispenser and it becomes commonly available for all other PTS-1 controllers, which
+makes it possible to be controlled (locked) by any of the PTS-1 controllers connected to other POS systems.
+NOTE! In order to provide control over same fuel dispensers from several PTS-1 controllers locking and
+unlocking of dispensers is required. For this reason in configuration of PTS-1 controller in parameters for
+PTS-1 controller “Lock” and “Unlock” commands should be set to be used (see section “Configuration of
+parameters for PTS-1 controller”).
+NOTE! In order to provide correct exchange of ATG systems measurement data between interconnected
+PTS-1 controllers logical addresses of connected ATG probes in configuration of interconnected PTS-1
+controllers should not intersect (have various values in different PTS-1 controllers).
+www.technotrade.ua page 25 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 CONTROLLER CONFIGURATION AND TESTING UTILITY
+General information
+PTS-1 controller configuration and testing utility Pts_config.exe serves for configuration and testing of the
+PTS-1 controller. This utility is open source, which allows developers to use its source code in their
+development. Currently utility is developed under Visual Studio using C# and Visual Basic .NET languages
+under Windows OS. Development of the utility is also done in other programming languages under other
+operating systems. For direct communication with PTS-1 controller the utility uses UniPump communication
+protocol (own proprietary protocol of Technotrade LLC) – see document “UniPump communication protocol
+specification for PTS-1 controller over fuel dispensers and ATG systems” for more information.
+PTS-1 controller configuration and testing utility Pts_config.exe is a multipurpose utility for PTS-1 controller.
+It provides the following possibilities:
+- provision of control over the connected pumps and probes
+- configuration of pumps (fuel dispensers) ports and probes (ATG systems) ports
+- configuration of PTS-1 controller parameters
+- update of the PTS-1 controller firmware
+- logging of PTS-1 controller communication exchange with connected equipment
+- self-diagnostics of PTS-1 controller communication ports and switches
+www.technotrade.ua page 26 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Scheme of connections
+NOTE! On some computers for correct operation COM-port FIFO settings should be adjusted to Tx: 1, Rx: 1.
+This may also apply to situations when a computer does not have a native COM-port and external COM-
+port converter are applied (like USB-to-COM, PCI-to-COM, Ethernet-to-COM, Bluetooth-to-COM etc).
+Starting PTS configuration utility
+Run Pts_config.exe utility. Make sure that in main menu in tab “Connection” type of PTS-1 controller
+connection “Direct connection to COM-port” is selected (other types of connection serve for connection of
+PTS-1 controller through fiscal modules). Set up a correct COM-port number and press “Connect” button.
+www.technotrade.ua page 27 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “General”
+Tab “General” serves for 3 main purposes:
+- reading of PTS-1 controller firmware version information: firmware date and a list of supported
+communication protocols of pumps and ATG systems (probes)
+- saving of all PTS-1 controller configuration to a file on computer and restoring of all PTS-1 controller
+configuration from a file on computer
+- resetting of PTS-1 controller configuration
+NOTE! Pay attention that the PTS-1 controller is using latest version of the firmware. Latest version of
+firmware can be received upon request from Technotrade LLC company or downloaded from Technotrade
+LLC company website. Normally new firmware for PTS-1 controller is issued together with PTS configuration
+utility update having latest features of PTS-1 controller, so updated version of the PTS-1 controller
+configuration utility Pts_config.exe should be also requested and downloaded. Information on how to
+update PTS-1 controller firmware please find below in section “Tab ‘Firmware update’”
+.
+In case if firmware version used in PTS-1 controller is older than required for Pts_config.exe utility – then a
+warning message about it will appear in Events review field.
+A list of all supported communication protocols and baud rates by PTS-1 controller as well as description
+and settings of all parameters are described in file pts_config_en.xml (file may have other name depending
+on the used language).
+www.technotrade.ua page 28 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Pumps configuration”
+Tab “Pumps configuration” is used for reading and writing of configuration of pump ports in PTS-1
+controller.
+Configuration of pump ports includes setting of communication protocol and baud rate for each of the
+pump ports and also assigning of pumps to each of the pump ports. Each of the pumps can be assigned to
+any of the pump ports and requires specification of the pump physical address.
+Logical address of the pump means the address on which the control system (POS system, cash register,
+OPT, etc) will see given fueling place. Physical address of the pump means address of the real fueling place,
+which is programmed or set in configuration of the fuel dispenser fueling place.
+For some pump protocols it is also necessary to configure parameters, which is to be done on tab
+“Parameters” of the utility. Button “Param.
+” is used to transfer to “Parameters” tab to configure
+parameters for the selected pump. Button “Configure pump parameters now” is used to transfer to
+“Parameters” tab to configure parameters for all pumps.
+After configuration is finished it is necessary to click a button “Set pumps configuration”, which will write
+current pump ports configuration to controller. Information about result of operation of writing of
+configuration to controller (whether it is made successfully or there was some problem) will be written in
+the events review field on the form.
+www.technotrade.ua page 29 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Probes configuration”
+Tab “Probes configuration” is used for reading and writing of configuration of probe ports in PTS-1
+controller.
+Configuration of probe ports includes setting of communication protocol and baud rate for each of the
+probe ports and also assigning of probes to each of the probe ports. Each of the probes can be assigned to
+any of the probe ports and requires specification of the probe physical address.
+Logical address of the probe means the address on which the control system (POS system, cash register,
+OPT, etc) will see given probe. Physical address of the probe means address of the ATG system probe,
+which is programmed or set in configuration of the ATG system console or probe.
+For some probe protocols it is also necessary to configure parameters, which is to be done on tab
+“Parameters” of the utility. Button “Param.
+” is used to transfer to “Parameters” tab to configure
+parameters for the selected probe. Button “Configure pump parameters now” is used to transfer to
+“Parameters” tab to configure parameters for all probes.
+After configuration is finished it is necessary to click a button “Set probes configuration”, which will write
+current probe ports configuration to controller. Information about result of operation of writing of
+configuration to controller (whether it is made successfully or there was some problem) will be written in
+the events review field on the form.
+www.technotrade.ua page 30 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Parameters”
+Tab “Parameters” serves for:
+- configuration of parameters for PTS-1 controller
+- configuration of parameters for pumps protocols
+- configuration of parameters for probes protocols
+All parameters are listed in a table with detailed description. Default parameters values are specified in a
+separate column. To get a current value of the parameter it is necessary to read them from PTS-1
+controller.
+Configuration of PTS-1 controller parameters includes various adjustments for PTS-1 controller operation.
+Some of the pumps and probes communication protocols also require setting of parameters. These
+parameters are set for the specified logical address of the pump (or probe) and do not refer to other pumps
+(or probes) in the PTS-1 controller.
+Description and settings of all parameters as well as a list of all supported communication protocols and
+baud rates by PTS-1 controller are described in file pts_config_en.xml (file may have other name depending
+on the used language).
+www.technotrade.ua page 31 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Examples of the device protocol parameters:
+Parameters for pump - Dart communication protocol parameters for pump 1
+Parameters for probe – Gilbarco Veeder Root communication protocol parameters for probe 1
+www.technotrade.ua page 32 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Control”
+Tab “Control” serves for provision of control over connected pumps and probes.
+Section “Pumps” is used for displaying state of all 16 pumps of PTS-1 controller, current taken up nozzle,
+state whether the pump is locked by PTS-1 controller, currently executed command and also volume,
+money amount and price of dispensed fuel. Selection of the pump is made by selecting a pumps row in a
+table.
+Section “Pump order” is made for provision of control over the pumps:
+- selection of pump
+- field for setting a dose to be dispensed by selected pump
+- selection of operation mode: volume preset, money amount preset, full tank
+- commands to be given to selected pump: authorize, stop, suspend, resume, get total counters, get and
+set price, get tag ID, turn lights on or off.
+- fields for getting/setting prices of each nozzle of the selected pump
+Section “Probes” is used for displaying measurement data of each of 16 probes of PTS-1 controller.
+www.technotrade.ua page 33 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Section “Settings” includes the following settings:
+-
+“Use extended commands” sets if communication with PTS-1 controller should be done using general
+commands of extended (extended commands are to be used instead of general commands when there
+is necessity to get/set values to PTS-1 controller, which size is bigger than provided by general
+UniPump protocol format)
+-
+“Use Lock/Unlock commands” – if this option is selected then PTS-1 controller will try to lock the pump
+before giving command to it and unlock it after the command is performed, it this option is not set
+then PTS-1 controller will not send LockRequest and UnlockRequest commands. This option should be
+equal to PTS parameter “Use command LockRequest and UnlockRequest”.
+-
+“Automatically authorize pump in full tank mode at nozzle up” – if this option is set then PTS-1
+controller will automatically authorize the pump with volume on 999999 liters automatically at once
+when the nozzle is up. This is made to set dispensing in completely automatic mode without any
+actions to be performed on computer to start dispensing.
+-
+“Automatically request total counters in end of dispensing” – this option is set then PTS-1 controller
+will automatically request total counters from the pump at the end of dispensing (after a transaction is
+closed).
+-
+“Quantity of decimal digits”: these options set number of decimal places used in pump in fields of
+volume, money amount, price, volume and money amount total counters. The quantity of decimal
+digits in these fields should correspond to their quantity in the pump in order to make numbers
+displays in pump same as in this PTS configuration utility.
+Events review fields displays results of all performed operations.
+www.technotrade.ua page 34 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Logging”
+Tab “Logging” serves for logging of communication exchange between the PTS-1 controller and connected
+pumps or probes.
+With a reason to quickly locate and remove possible bugs in PTS-1 controller communication with
+connected equipment (fuel dispensers and ATG systems) PTS-1 controller has a possibility of logging of its
+exchange with connected equipment. Use Pts_config.exe utility to save in a control system exchange logs of
+PTS-1 controller with connected equipment.
+Configuration of PTS-1 controller to get a log
+In order to get the log it is necessary first to set a port to be logged. For this connect PTS-1 controller to
+computer and run Pts_config utility.
+In Pts_config utility go to tab “Parameters” and there set a parameter for PTS-1 controller named “Port to
+log” for the PTS-1 controller port, from which a log should be taken (see below screenshot). Save this
+configuration.
+www.technotrade.ua page 35 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+www.technotrade.ua page 36 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Procedure to get a log
+For taking a log it is necessary to connect the computer to PTS-1 controller port LOG as shown on the
+scheme below. At this PTS-1 controller should be working with connected equipment and control system.
+Log is taken online – all current actions on the selected port are written to the log-file (no log is stored
+inside PTS).
+On the tab “Logging” it is necessary to select a folder, where the log-file is to be stored and press “Start
+log” button. Log process will be displayed in the “Log verification” section and size of the log-file capture
+will be displayed on the form.
+“Log verification” section displays log process by indicating the direction of currently taken log:
+1. 2. 3. 4. Control system transfers data to PTS
+PTS transfers data to Control system
+PTS transfers data to Slave device
+Slave device transfers data to PTS
+www.technotrade.ua page 37 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+In case if there is no data transferred – the “Log verification” section displays a message “Log is not taken,
+please recheck log parameters in PTS-1 controller and connections!”. If you see this message – you need to
+recheck all the configuration and connections to get a log.
+Each of the boxes in “Log verification” section display a direction of messages sent in PTS-1 controller
+communication.
+NOTE! At taking a log make sure that the red boxes on the right side blink indicating exchange between the
+PTS and Slave device. If they do not blink – it means that the log of exchange on selected port is not
+written, at this you should recheck your logging port parameter in PTS-1 controller parameter or check
+communication between the PTS-1 controller and connected device on the specified port.
+Log is accumulated to a file, size of file should be growing during the logging process, if it does not grow –
+then the log is not taken, you will probably see a message “Log is not taken, please recheck log parameters
+in PTS-1 controller and connections!” in “Log verification” section as described above.
+Log-file has a name with indication of the time of log taken, for example: which means that the log was taken on 4th of July, 2014 at 12:14:58.
+log_2014_07_04_12_14_58.bin,
+www.technotrade.ua page 38 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+In case if log process is switched on – a new log-file with a new name is created each 30 minutes (old log-
+file is saved). This allows to avoid log-file overfilling when its size comes to critical to the operating system.
+Thus, you can switch on logging and wait until any problem happens. When it happens and you
+approximately know time of this problem – you can take appropriate (by name) log-file and send to
+Technotrade LLC for analysis.
+Log in accumulated in the encrypted form. After a log of exchange is taken it is required to pass a
+received bin file to Technotrade LLC company for examining and elimination of possible problems, for
+reasons of which it was taken.
+www.technotrade.ua page 39 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Firmware update”
+Tab “Firmware update” servers for updating of firmware of PTS-1 controller and other interface converters.
+PTS-1 controller firmware is constantly being improved and new versions of firmware with new added
+communication protocols and fixed bugs of the previous firmware versions are proposed to be applied.
+New versions of PTS-1 controller's firmware are always available for downloading for customers.
+For update of firmware update it is necessary to make one of 2 possible actions:
+1. Set 4th DIP-switch SA1 in position ON:
+4th DIP-switch SA1
+set to position ON
+www.technotrade.ua page 40 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+2. Set a PTS-1 controller parameter “ALLOW FIRMWARE UPDATE” to enable firmware update of PTS-1
+controller:
+Connection of the PTS-1 controller is done directly to COM-port of computer.
+www.technotrade.ua page 41 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+On tab “Firmware update” it is necessary select the COM-port number of the computer, check that
+connection is not opened (COM-port is closed) and select the firmware file before starting the firmware
+update process.
+Firmware update process will start upon clicking on button “Start update”. In case if the firmware is not
+being updated – power off the PTS-1 controller, click to start firmware update and power on the PTS-1
+controller. At this the firmware update process should start.
+NOTE! In order to prevent PTS-1 controller firmware from accidental update it is strictly recommended to
+keep 4th DIP-switch SA1 in OFF position and disable PTS-1 controller parameter “ALLOW FIRMWARE
+UPDATE” in any moment of time except for firmware update needs.
+NOTE! Pay attention that your PTS-1 controller is using latest version of the firmware. Latest version of
+firmware can be received upon request from Technotrade LLC company or downloaded from Technotrade
+LLC company website. Normally new firmware for PTS-1 controller is issued together with PTS configuration
+utility update having latest features of PTS-1 controller, so updated version of the PTS-1 controller
+configuration utility Pts_config.exe should be also requested and downloaded. Information on the present
+firmware version of PTS-1 controller can be checked on tab “General” (mentioned above).
+Due to a reason that some firmware versions may erase all configuration of the PTS-1 controller it
+recommended to save all configuration of PTS-1 controller to file before making an update (see on tab
+“General” section “Save current configuration to file”) and in case if after the update the PTS-1 controller
+www.technotrade.ua page 42 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+configuration turns out to be erased – restore all the configuration from the previously saved file (see on
+tab “General” section “Restore configuration from file”).
+NOTE! In case if an error happened during the firmware update process and PTS-1 controller became
+unresponsive please make the following procedure:
+1. Power off the PTS-1 controller and wait until all the LEDs on the PTS-1 controller board stop blinking or
+shining.
+2. 3. In PTS-1 controller board set DIP-4 switch to ON position.
+Connect PTS-1 controller to computer with PTS configuration utility.
+4. In PTS configuration utility select the firmware update file, COM-port number and click on “Start
+update” button.
+5. 6. Power on the PTS-1 controller – at this firmware update process should start automatically.
+After the firmware update process is completed set DIP-4 switch back to OFF position.
+www.technotrade.ua page 43 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Diagnostics ”
+Tab “Diagnostics” servers for self-diagnostics of PTS-1 controller ports and DIP-switches.
+Scheme of connections of the PTS-1 controller should be the following:
+Lines “RS-485 A” in of each pump port and DISP port (RS-485) should be interconnected with each other,
+also lines “RS-485 B” in of each pump port and DISP port (RS-485) should be interconnected with each
+other as shown on the picture.
+In LOG, USER and DISP (RS-232) ports pin TxD should be shortened with pin RxD as shown on the picture.
+www.technotrade.ua page 44 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Diagnostics of port with RS-485 interfaces
+In section “Diagnostics of RS-485 interface channels” results of diagnostics will be shown by color of labels.
+Green color means that correspondent channel is working correctly (OK), red color – correspondent
+channel is working incorrectly (BAD). In case if the error counter increases its value – then the errors are
+taking place.
+For PTS-1 controller of version PTS-U5 area RTS channel 1 – 4 should not be taken into account cause is
+used with previous versions of PTS-1 controller (PTS-U, PTS-U2, PTS-U3).
+Diagnostics of port with RS-232 interfaces
+In section “Diagnostics of RS-232 interface channels” results of diagnostics will be shown by color of labels.
+Green color means that correspondent channel is working correctly (OK), red color – correspondent
+channel is working incorrectly (BAD). In case if the error counter increases its value – then the errors are
+taking place.
+Diagnostics of DIP-switch SA1
+In section “Diagnostics of DIP-switches” current position of switches in SA1 DIP-switch on PTS board is
+displayed. If displayed position of switches correspond to real position of switches in DIP-switch SA1 on PTS
+board after checking them in various positions – then DIP-switch SA1 is working correctly.
+www.technotrade.ua page 45 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+BUILT-IN PUMPS SIMULATOR
+PTS-1 controller firmware between its pump protocols has a protocol “37. PUMP SIMULATOR”, which
+allows to simulate presence of connected pumps. Baud rate at this can be set to any possible.
+It allows to make easy debugging of control over dispensers through PTS-1 controller without real fuel
+dispensers connected.
+Purpose of the pump simulator protocols is to help developers in debugging of the control system software
+over PTS-1 controller at absence of real dispenser pumphead for connection or software simulators of fuel
+dispenser.
+When protocol “37. PUMP SIMULATOR” is selected – then it is possible to debug dispensing of the pumps
+without any pumphead or simulator connected to PTS-1 controller. Using parameters for this pump
+protocol it is possible to set the number of taken up nozzle for every pump and also set whether the
+dispensing should be done immediately or in full process.
+www.technotrade.ua page 46 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Pump simulators allow to:
+− authorize a dispenser with preset volume or amount values
+− simulate dispensing of fuel through this dispenser and stop it at necessity
+− set prices to dispenser and get prices from dispenser
+− read total counters values (both amount and volume) (total counters are lead on each of the
+nozzles separately and are dropped to zero at restart of the PTS-1 controller)
+− set pause during dispensing and release (continue) dispensing after pause
+www.technotrade.ua page 47 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+BUILT-IN ATG PROBES SIMULATOR
+PTS-1 controller firmware between its ATG probes protocols has a protocol “7. ATG SIMULATOR”, which
+allows to simulate presence of connected ATG probe. Baud rate at this can be set to any possible.
+At this depending on the selected address of the ATG probe output measurement values will be the
+following.
+www.technotrade.ua page 48 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+For ATG probes with logical address 1 – dynamically changing all measurement parameters looping in the
+following sequence (measurement numbers coming from 1 to 9 and back from 9 to 1):
+Measurement number
+1 2 3 4 5 6 7 8
+Product level, mm 100 120 150 160 200 222.5 250 300
+Measurement parameter
+Water level, mm 1 1.2 1.5 1.6 2 2.2 2.5 3
+Product volume, l 8000 9600 12000 12800 16000 17800 20000 24000
+Water volume, l 80 96 120 128 160 176 200 240
+Temperature, deg. C +11.0 +11.1 +11.3 +11.6 +12.0 +12.5 +13.1 +14.0
+Product temperature
+6400 7680 9600 10240 12800 14240 16000 19200
+compensated volume, l
+Product ullage, l 17000 15400 13000 12200 9000 7200 5000 1000
+Product density, kg/m3 759 758.8 758.5 758.4 758 757.8 757.5 757
+Product mass, kg 6072 6829.2 9102 9100.8 12128 12882.6 15150 18168
+For ATG probes with logical addresses 2-16 there are statically fixed measurement values:
+− product level – logical address + 123.4 mm (example - for address 6: 6123.4 mm)
+− water level – logical address + 56.7 mm (example - for address 9: 956.7 mm)
+− temperature – logical address + 0.8 deg. C (example - for address 12: 12.8 deg. C)
+There are parameters for “7. ATG SIMULATOR” probes protocol allowing to simulate reception of automatic
+in-tank deliveries reports from ATG systems.
+www.technotrade.ua page 49 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 CONTROLLER API (APPLICATION PROGRAMMING INTERFACES)
+PTS-1 controller for developers is supplied together with rich set of API (application programming
+interfaces) for mostly used programming languages and operation platforms:
+− C and C++: API for communication with a PTS-1 controller through a COM-port, documentation and
+examples of application in source codes under Windows OS and Linux operation systems
+− C#:
+o open source library, which includes classes, methods and properties for communication
+with PTS-1 controller for provision of control over dispensers and ATG systems and
+configuration of PTS-1 controller
+o open-source utility for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operations with the PTS-1 controller
+o open source fully-functional application for provision of control over up to 8 pumps and 4
+ATG systems by the PTS-1 controller, allows to perform all operations with the PTS-1
+controller
+o open source PTS-1 controller configuration and testing utility
+− Delphi: API for communication with a PTS-1 controller through a COM-port, documentation and
+examples of application in source codes
+− Java:
+o open source library, which includes classes, methods and properties for communication
+with PTS-1 controller for provision of control over dispensers and ATG systems and
+configuration of PTS-1 controller
+o open-source utility for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operations with the PTS-1 controller
+− Python: API for communication with a PTS-1 controller through a COM-port, documentation and
+examples of application in source codes
+− Visual Basic .NET:
+o open source library, which includes classes, methods and properties for communication
+with PTS-1 controller for provision of control over dispensers and ATG systems and
+configuration of PTS-1 controller
+o open-source utility for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operations with the PTS-1 controller
+o open source fully-functional application for provision of control over up to 8 pumps and 4
+ATG systems by the PTS-1 controller, allows to perform all operations with the PTS-1
+controller
+o open source PTS-1 controller configuration and testing utility
+− COM-object for PTS-1 controller:
+o open-source COM-object (written in Microsoft Visual C++ 6.0 IDE in C++ programming
+language) with methods and properties for communication with PTS-1 controller for
+provision of control over dispensers and ATG systems and configuration of PTS-1 controller
+o open-source application in Microsoft Visual Basic 6.0 for testing and indication of all
+operations provided by the PTS-1 controller, allows to perform all operations with the PTS-
+1 controller
+− Description of communication protocol of PTS-1 controller: describes communication parameters,
+messages structure, commands and responses of communication between POS management
+system and PTS-1 controller, typical flowchart and diagram of interoperation
+www.technotrade.ua page 50 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+C and C++ API
+API represents a set of for communication with a PTS-1 controller through a COM-port, documentation and
+examples of application in source codes under Windows OS and Linux operation systems
+API can be compiled as a static or dynamic library. The library can be compiled by different compilers for
+different operating systems: POSIX compatible (tested with GNU Linux only) and Microsoft Windows.
+Source code of library are located in ./src directory.
+Headers of library located in ./include directory.
+Directory ./examples contains several examples of using library functions.
+Directory ./doc contains html documentation generated by ccdoc programm.
+Conditionally, API functions can be divided into groups:
+− Manage API: Open/close, receiving error, set/get API options
+o pts_open
+o pts_open_dev
+o pts_close
+o pts_last_error
+o pts_option_get
+o pts_option_set
+− Handle of a controller configuration
+o pts_pump_config_get
+o pts_atg_config_get
+o pts_pump_config_set
+o pts_atg_config_set
+o pts_version_get
+− Functions of a read and write parameters of the controller or filling places
+o pts_param_get
+o pts_param_set
+− Functions of management by filling places
+o pts_authorize
+o pts_pts_authorize_by_amount
+o pts_halt
+o pts_lock
+o pts_unlock
+o pts_preset_prices
+o pts_prices_request
+o pts_status_request
+o pts_total_request
+o pts_trans_close
+− Functions of reading measurements of Automatic Tank Gauge (ATG)
+o pts_atg_measure_request
+Library functions (except for : pts_open, pts_open_dev, pts_close) have common features:
+− return value: functions return 0 (FM_OK) if no error and error code if error (see
+include/pts_errors.h for
+− determine the type of error)
+www.technotrade.ua page 51 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+− first of parameter - pts_api_descriptor - integer obtained by the open function: pts_open or
+pts_open_dev
+− last parameter - pointer to PTS response structure - see include/pts_data.h for determine the data
+type.
+All commands in protocol involve getting a response.
+PS: If you want use *.bat files for call make, please edit it for set true path to your favorite language
+installation.
+www.technotrade.ua page 52 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+C# PTS-1 controller configuration and testing utility
+PTS-1 controller configuration and testing utility is written in C# programming language in Visual Studio
+2010 Express and requires .NET Framework 2.0.
+Given application includes 2 projects:
+− PtsLib - project of PtsLib.dll library for operation with a PTS-1 controller. Includes classes, methods
+and properties for communication with PTS-1 controller using requests and responses described in
+UniPump communication protocol for communication with PTS-1 controller for provision of control
+over dispensers and ATG systems and configuration of PTS-1 controller.
+− Open source utility for configuration of PTS-1 controller, provision of control over pumps and
+probes, logging of operation, firmware update, self-diagnostics, others (uses classes and methods
+of PtsLib.dll library).
+PTS-1 controller configuration and testing utility: tab “Control”
+www.technotrade.ua page 53 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+PTS-1 controller configuration and testing utility: tab “Parameters”
+PTS-1 controller configuration and testing utility: tab “Pumps configuration”
+www.technotrade.ua page 54 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+C# application
+The application for PTS-1 controller is written in C# programming language in Visual Studio 2010 Express
+and requires .NET Framework 2.0.
+Given application includes 2 projects:
+− PtsLib - project of PtsLib.dll library for operation with a PTS-1 controller. Includes classes, methods
+and properties for communication with PTS-1 controller using requests and responses described in
+UniPump communication protocol for communication with PTS-1 controller for provision of control
+over dispensers and ATG systems and configuration of PTS-1 controller.
+− Fully-functional open source application for provision of control over up to 8 pumps and 4 ATG
+systems by the PTS-1 controller, allows to perform all operations with the PTS-1 controller (uses
+classes and methods of PtsLib.dll library).
+General view of the application: allows to provide control over up to 8 pumps
+www.technotrade.ua page 55 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form of ATG systems monitoring: allows to monitor up to 4 ATG systems
+Form of PTS-1 controller configuration: allows to set configuration for pumps and ATG systems ports
+and also set parameters
+www.technotrade.ua page 56 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+C# API
+The API for PTS-1 controller is written in C# programming language in Visual Studio 2010 Express and
+requires .NET Framework 2.0.
+Given API includes 2 projects:
+− PtsLib - project of PtsLib_CSharp.dll library for operation with a PTS-1 controller. Includes classes,
+methods and properties for communication with PTS-1 controller using requests and responses
+described in UniPump communication protocol for communication with PTS-1 controller for
+provision of control over dispensers and ATG systems and configuration of PTS-1 controller.
+− Open-source utility for testing and indication of all operations provided by the PTS-1 controller,
+allows to perform all operations with the PTS-1 controller (uses classes and methods of
+PtsLib_CSharp.dll library).
+Form for testing and indication of all operations provided by the PTS-1 controller
+www.technotrade.ua page 57 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form for configuration of pumps ports of PTS-1 controller
+Form for configuration of ATG systems ports of PTS-1 controller
+www.technotrade.ua page 58 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Delphi API
+Delphi API implements shared library libpts.dll calls.
+Library libpts.dll was build with Borland compiler C PTS API (source C files you can find in libpts.zip).
+Source code of library are located in ./src directory. Directory ./examples contains several examples of
+using library functions.
+Graphical form for testing API for PTS-1 controller written in Delphi
+Conditionally, API functions can be divided into groups:
+− Manage API: Open/close, receiving error, set/get API options
+o pts_open
+o pts_open_dev
+o pts_close
+o pts_last_error
+o pts_option_get
+o pts_option_set
+− Handle of a controller configuration
+o pts_pump_config_get
+o pts_atg_config_get
+o pts_pump_config_set
+o pts_atg_config_set
+o pts_version_get
+− Functions of a read and write parameters of the controller or filling places
+o pts_param_get
+o pts_param_set
+− Functions of management by filling places
+www.technotrade.ua page 59 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+o pts_authorize
+o pts_pts_authorize_by_amount
+o pts_halt
+o pts_lock
+o pts_unlock
+o pts_preset_prices
+o pts_prices_request
+o pts_status_request
+o pts_total_request
+o pts_trans_close
+− Functions of reading measurements of Automatic Tank Gauge (ATG)
+o pts_atg_measure_request
+Library functions (except for : pts_open, pts_open_dev, pts_close) have common features:
+− return value: functions return 0 (FM_OK) if no error and error code if error (see
+include/pts_errors.h for
+− determine the type of error)
+− first of parameter - pts_api_descriptor - integer obtained by the open function: pts_open or
+pts_open_dev
+− last parameter - pointer to PTS response structure - see include/pts_data.h for determine the data
+type.
+All commands in protocol involve getting a response.
+www.technotrade.ua page 60 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Java API
+Java API for PTS-1 controller is written in Java programming language in NetBeans IDE 7.2.1.
+Given API includes:
+− JavaPtsLib: library for operation with a PTS-1 controller. Includes classes, methods and properties
+for communication with PTS-1 controller using requests and responses described in UniPump
+communication protocol for communication with PTS-1 controller for provision of control over
+dispensers and ATG systems and configuration of PTS-1 controller.
+− JavaPtsApp: open-source utility for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operation with the PTS-1 controller (uses classes and methods of
+JavaPtsLib).
+Communication over the COM-port (RS-232 interface) is done using RXTX Java library (visit
+www.rxtx.qbang.org for downloads and information): RXTX is a Java library, using a native implementation
+(via JNI), providing serial and parallel communication for the Java Development Toolkit (JDK). It is based on
+the specification for Sun's Java Communications API, though while many of the class descriptions are the
+same the package used it not, since gnu.io is used instead. For more information please visit the rxtx wiki at
+http://rxtx.qbang.org/wiki (latest releases of the library can be downloaded there).
+Form for testing and indication of all operations provided by the PTS-1 controller
+www.technotrade.ua page 61 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form for configuration of pumps ports of PTS-1 controller
+Form for configuration of ATG systems ports of PTS-1 controller
+www.technotrade.ua page 62 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Python API
+Before installation of this package it is necessary to install PySerial (http://pyserial.sourceforge.net/).
+To install PTS module, run python setip.py install, Where python = your desired python version executable.
+Graphical form for testing API for PTS-1 controller written in Python
+The protocol of exchange is realized in the pts.protocol module.
+The exchange through a serial port is realized with use PySerial module (http://pyserial.sourceforge.net/)
+(therefore, before installation of this package it is necessary to install PySerial).
+The package was tested with python of versions 2.7 and 3.0
+The pts.constants module contains values of various constants
+The pts.config module - structures of data, for a controller configuration
+The pts.response module - structures of the data returned by the controller
+The pts.protocol module - protocol commands
+Conditionally, API functions can be divided into groups:
+− Manage API: Open/close, receiving error, set/get API options
+o pts_open
+o pts_open_dev
+www.technotrade.ua page 63 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+o pts_close
+o pts_last_error
+o pts_option_get
+o pts_option_set
+− Handle of a controller configuration
+o pts_pump_config_get
+o pts_atg_config_get
+o pts_pump_config_set
+o pts_atg_config_set
+o pts_version_get
+− Functions of a read and write parameters of the controller or filling places
+o pts_param_get
+o pts_param_set
+− Functions of management by filling places
+o pts_authorize
+o pts_pts_authorize_by_amount
+o pts_halt
+o pts_lock
+o pts_unlock
+o pts_preset_prices
+o pts_prices_request
+o pts_status_request
+o pts_total_request
+o pts_trans_close
+− Functions of reading measurements of Automatic Tank Gauge (ATG)
+o pts_atg_measure_request
+Work with the protocol can be set for work without exceptions (when error occurred), and with generation
+of exceptions (PtsException). Parameter of initialization of use_exceptions is responsible for it.
+www.technotrade.ua page 64 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Visual Basic .NET PTS-1 controller configuration and testing utility
+PTS-1 controller configuration and testing utility is written in VB.NET programming language in Visual
+Studio 2010 Express and requires .NET Framework 2.0.
+Given application includes 2 projects:
+− PtsLib - project of PtsLib.dll library for operation with a PTS-1 controller. Includes classes, methods
+and properties for communication with PTS-1 controller using requests and responses described in
+UniPump communication protocol for communication with PTS-1 controller for provision of control
+over dispensers and ATG systems and configuration of PTS-1 controller.
+− Open source utility for configuration of PTS-1 controller, provision of control over pumps and
+probes, logging of operation, firmware update, self-diagnostics, others (uses classes and methods
+of PtsLib.dll library).
+PTS-1 controller configuration and testing utility: tab “Control”
+www.technotrade.ua page 65 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+PTS-1 controller configuration and testing utility: tab “Parameters”
+PTS-1 controller configuration and testing utility: tab “Pumps configuration”
+www.technotrade.ua page 66 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Visual Basic .NET application
+The Visual Basic .NET application for PTS-1 controller is written in VB.NET programming language in Visual
+Studio 2010 Express and requires .NET Framework 2.0.
+Given application includes 2 projects:
+− PtsLib: project of PtsLib.dll library for operation with a PTS-1 controller. Includes classes, methods
+and properties for communication with PTS-1 controller using requests and responses described in
+UniPump communication protocol for communication with PTS-1 controller for provision of control
+over dispensers and ATG systems and configuration of PTS-1 controller.
+− PTS: fully-functional open source application for provision of control over up to 8 pumps and 4 ATG
+systems by the PTS-1 controller, allows to perform all operations with the PTS-1 controller (uses
+classes and methods of PtsLib.dll library).
+General view of the application: allows to provide control over up to 8 pumps
+www.technotrade.ua page 67 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form of ATG systems monitoring: allows to monitor up to 4 ATG systems
+Form of PTS-1 controller configuration: allows to set configuration for pumps and ATG systems ports
+and also set parameters
+www.technotrade.ua page 68 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Visual Basic .NET API
+Visual Basic .NET API for PTS-1 controller is written in VB.NET programming language in Visual Studio 2010
+Express and requires .NET Framework 2.0.
+Given API includes 2 projects:
+− PtsLib - project of PtsLib_VBNET.dll library for operation with a PTS-1 controller. Includes classes,
+methods and properties for communication with PTS-1 controller using requests and responses
+described in UniPump communication protocol for communication with PTS-1 controller for
+provision of control over dispensers and ATG systems and configuration of PTS-1 controller.
+− PTS - open-source utility for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operations with the PTS-1 controller (uses classes and methods of
+PtsLib_VBNET.dll library).
+Form for testing and indication of all operations provided by the PTS-1 controller
+www.technotrade.ua page 69 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form for configuration of pumps ports of PTS-1 controller
+Form for configuration of ATG systems ports of PTS-1 controller
+www.technotrade.ua page 70 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 controller COM-object for MS Windows OS
+COM-object for PTS-1 controller is written in Microsoft Visual C++ 6.0 IDE in C++ programming language.
+Project is located in PTSDriver folder. It builds PTSDriver.dll on output.
+For communication with a PTS-1 controller it uses API (application programming interface), written in C
+language (located in C_API folder).
+In order to provide control over PTS-1 controller and simplify work of developers, who are working in
+Windows OS in implementation of UniPump communication protocol of PTS-1 controller, a COM-object
+with methods and properties for operation with PTS-1 controller is provided.
+COM-object is compiled on Visual C++ 6.0 and is supplied together with a test application, written on Visual
+Basic 6.0.
+Documentation of COM-object describes all methods and properties of the COM-object and its application.
+To register PTSDriver.dll library in Windows OS perform command
+REGSVR32 PTSDriver.dll
+from folder
+PTS_SDK\API TOOLS\COM_object_API_plus_VB6.0_appilcation.rar\PTSDriver\ReleaseMinDependency\
+www.technotrade.ua page 71 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Visual Basic 6.0 application
+For testing of the COM-object an open-source application in Microsoft Visual Basic 6.0 is written (located in
+VB_6.0_app folder). It provides GUI form for testing and indication of all operations provided by the PTS-1
+controller, allows to perform all operation with the PTS-1 controller (uses classes and methods of
+PTSDriver).
+Form for testing and indication of all operations provided by the PTS-1 controller
+www.technotrade.ua page 72 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form for configuration of pumps ports of PTS-1 controller
+www.technotrade.ua page 73 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Form for configuration of ATG systems ports of PTS-1 controller
+www.technotrade.ua page 74 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 controller UniPump communication protocol
+PTS-1 controller is intended to be used in connection with control systems for petrol stations (POS systems,
+cash registers, OPT terminals, etc) to provide simultaneous control over various types of electronic fuel
+delivery dispensers and ATG systems of various manufactures using the single common communication
+protocol UniPump. PTS-1 controller provides conversion of the common communication protocol UniPump
+into various proprietary communication protocols of manufacturers.
+UniPump communication protocol covers a list of commands and responses for communication with PTS-1
+controller for provision of control over dispensers and ATG systems and configuration of PTS-1 controller.
+www.technotrade.ua page 75 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 CONTROLLER SOFTWARE DEVELOPMENT KIT (SDK)
+PTS-1 controller SDK appointment
+PTS-1 controller SDK (Software Development Kit) is intended for developers of POS management software
+for petrol stations that needs to provide control fuel dispensers and ATG systems.
+PTS-1 controller SDK includes a PTS-1 controller and USB/RS-232 and USB/RS485 interface converters,
+which allow to run software simulators of fuel dispensers and ATG systems on personal computer and
+debug operation of control systems software with PTS-1 controller on it without a necessity to connect to
+real fuel dispensers and ATG systems. Thus, it is convenient to work in office or at home rather than on a
+working petrol station being connected to real equipment.
+PTS-1 controller SDK allows developers to:
+1. Study operation with the PTS-1 controller.
+2. Implement the PTS-1 controller into own developed POS system or software application for control
+over fuel dispensers and ATG level measurement systems for petrol stations.
+3. Debug own software application to correctly provide control over fuel dispensers locally using
+software simulators on the workplace without a necessity to go to the petrol station and connect to
+real fuel dispensers.
+www.technotrade.ua page 76 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 controller SDK structure
+HARDWARE:
+1. 2. 3. PTS-1 controller over fuel dispensers and ATG systems for petrol stations: 1 pcs
+Interface converter RS-232/USB with cable: 2 pcs
+Interface converter RS-485/USB with cable: 1 pcs
+4. Cabling
+SOFTWARE:
+1. 2. 3. 4. Software simulator of fuel dispensers
+Software simulator of ATG systems (probes
+API for developers in various programming languages
+Useful utilities and applications for debugging of communication with PTS-1 controller
+Note: the RS-232/USB and RS-485/USB interface converters are based on FTDI chips, it is possible to
+download their drivers from the following page: https://ftdichip.com/drivers/vcp-drivers/.
+PTS-1 controller SDK technical features
+Specification
+## PARAMETER VALUE
+1 Voltage 12 V DC
+2 Current consumption 550 mA max
+3 Temperature range -40°C ÷ +80°C
+4 Weight 600 g
+5 Overall dimensions 160 x 160 x 85 mm
+www.technotrade.ua page 77 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 controller SDK connections scheme
+PTS-1 controller SDK box includes the PTS-1 controller board mounted inside of the metal case, USB/RS-232
+and USB/RS-485 interface converters and cablings with for communication.
+Control systems software, which uses UniPump communication protocol, connects to the PTS-1 controller
+PC port.
+USB/RS-232 and USB/RS-485 interface converters are used in order to convert signals coming from PTS-1
+controller pumps and probes ports to USB ports in computer in order to run the pumps and probes
+software simulators.
+Thus, it is possible to debug a correct operation of software, being developed, with the PTS-1 controller
+without a necessity to connect to real fuel dispensers and ATG systems, but using fuel dispenser’s software
+simulators and ATG system’s software simulators.
+www.technotrade.ua page 78 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+UniPump pumps software simulator
+Purpose
+PTS-1 controller SDK includes a pumps software simulator with a purpose to enable debugging of PTS-1
+controller implementation in third party software. Purpose of software simulators is to debug operation of
+control system software (cash register, POS system, OPT, etc) over fuel dispensers through PTS-1 controller
+without a necessity to connect to real fuel dispensers.
+Main view
+Dispensed volume,
+money amount and price
+total counters
+Selection and
+opening/closing
+of a COM-port
+Simulation of
+presence
+Pump mode of
+operation
+Volume and money
+total counters
+Selection of nozzle to
+take up/down and its
+trigger state
+State of
+pump
+Pump physical
+address
+Log of simulator operation with specification
+of all transmitted commands and their data
+Pump mode of operation
+operation
+Pumps software simulator main view
+www.technotrade.ua page 79 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+In pumps simulator it is possible to add up to 99 pumps giving each a unique physical address. Each of the
+pumps leads separately its total counters (volume and money amount) and prices for each of its 6 nozzles.
+Total counter values as well as prices are stored in Windows system register. Each of the nozzles has a
+trigger.
+Each of the pumps can be transferred to automatic mode of operation (controlled from the control system)
+or manual mode of operation (controlled manually and does not response to control system).
+Pump control in pumps software simulator
+In right-click mouse menu it is possible to preset the pump with money amount or volume value, stop the
+pump, reset, pause and change volume:
+Volume preset menu for pump
+Pump right-button mouse menu
+Configuration
+Configuration of the pumps simulator includes configuration of:
+− communication settings, which include setting of baud rate, number of data bits and stop bits,
+parity control
+− quantity of pumps (physical address is set on each pump control independently)
+− technical characteristics of the pumps in simulator (flow rate, slow flow rate (when flowdown valve
+is on), quantity of pulses before the flowdown valve is switched on
+− protocol type: selection between standard UniPump communication protocol and extended
+UniPump communication protocol for PTS-1 controller
+− setting quantity of digits in values of volume, money amount, price and total counters
+− selection of graphical skin
+Pumps simulator can simulate presence at the pumps – take up nozzles and make dispensing in random
+way thus making it possible to debug control system software as if it was operating on real petrol station.
+Log window of the pumps simulator enables to see all the requests and responses in communication and
+their respective data.
+www.technotrade.ua page 80 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Settings of pumps simulator
+For communication of PTS-1 controller with the UniPump pumps software simulator it is necessary to select
+in PTS-1 controller configuration of the pump port communication protocol “2. UNIPUMP” and select
+appropriate baud rate (equal to set in simulator (9600 baud rate by defaults) and set pumps physical
+addresses equal to those, which are set for pumps in simulator. Also it is necessary to set parameters to
+UniPump protocol for each of the pumps in PTS-1 controller configuration (see image below):
+1. Parameter “Multiplier of dose” set equal to 1.
+2. Parameter “Protocol type” set equal to “UniPump standard protocol” in case if protocol type is set to
+“Standard UniPump” in pumps simulator or “Extended protocol for PTS-1 controller” in case if protocol
+type is set to “Extended UniPump for PTS-1 controller” in pumps simulator.
+Parameters for UniPump protocol in PTS-1 controller
+www.technotrade.ua page 81 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+UniProbe ATG probes software simulator
+Purpose
+PTS-1 controller SDK includes a ATG probes software simulator with a purpose to enable debugging of PTS-
+1 controller implementation in third party software. Purpose of software simulators is to debug operation
+of control system software (cash register, POS system, OPT, etc) over ATG systems through PTS-1 controller
+without a necessity to connect to real ATG systems or probes.
+Main view
+Selection and
+opening/closing
+of a COM-port
+Simulation of
+presence
+ATG probe measurements
+(allows enable/disable any of the
+measured parameters)
+Connection state
+Probe physical
+address
+Tank height
+Log of simulator operation with specification of
+all transmitted commands and their data
+operation
+ATG probes software simulator main view
+In ATG probes simulator it is possible to set measurements of the following parameters:
+− Products height
+− Water height
+− Temperature
+− Product volume
+www.technotrade.ua page 82 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+− Water volume
+− Product ullage
+− Product temperature compensated volume
+− Product density
+− Product mass
+Any of the specified parameters can be switched on or off.
+Also, it is possible to set height of tank in the system.
+Each of the ATG probes can be transferred to connected (responses to PTS-1 controller) or disconnected
+(does not response to PTS-1 controller) state.
+Probe control in ATG probes software simulator
+Configuration
+Configuration of the pumps simulator includes configuration of:
+− communication settings, which include setting of baud rate, number of data bits and stop bits,
+parity control
+− quantity of ATG probes (physical address is set on each probe control independently)
+− selection of graphical skin
+Settings of probes simulator
+www.technotrade.ua page 83 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Probes simulator can simulate presence of liquids in tanks – change height and volume of fuel, temperature
+mass in random way thus making it possible to debug control system software as if it was operating on real
+petrol station.
+Log window of the probes simulator enables to see all the requests and responses in communication and
+their respective data.
+For communication of the PTS-1 controller with UniProbe ATG probes software simulator it is necessary to
+select in PTS-1 controller configuration of the probe port communication protocol “9. UNIPROBE” and
+select appropriate baud rate (equal to set in simulator (9600 baud rate by defaults) and set probes physical
+addresses equal to those, which are set for probes in simulator.
+www.technotrade.ua page 84 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Open source PTS-1 controller .NET application (C# and VB.NET)
+Purpose
+In order to provide control over PTS-1 controller and simplify work of developers, writing on Microsoft .NET
+Framework in implementation of UniPump communication protocol of PTS-1 controller and give an open
+source example of application for control over fuel dispensers and ATG systems at petrol station a .NET
+library (with open source in C# and VB.NET languages and documentation on methods and properties) and
+PTS-1 controller .NET application (with open source in C# and VB.NET languages) are provides.
+Given application includes 2 projects:
+− PtsLib - project of PtsLib.dll library for operation with a PTS-1 controller. Includes classes, methods
+and properties for communication with PTS-1 controller using requests and responses described in
+UniPump communication protocol for communication with PTS-1 controller for provision of control
+over dispensers and ATG systems and configuration of PTS-1 controller.
+− Fully-functional open source application for provision of control over up to 8 pumps and 4 ATG
+systems by the PTS-1 controller, allows to perform all operations with the PTS-1 controller (uses
+classes and methods of PtsLib.dll library).
+PTS-1 controller .NET application is provided on both C# and VB.NET languages and requires .NET
+Framework 2.0 for operation.
+www.technotrade.ua page 85 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Start
+To launch PTS-1 controller .NET application run PtsApplication.exe, select from a dropdown list a COM port
+name, to which PTS-1 controller is connected, and press a button to open a selected COM port.
+Note: connection with PTS-1 controller is made through a 3-wire realization of RS-232 interface, an
+asynchronous half-duplex port, baud rate 57600 baud without a parity check. This configuration is hardly
+coded inside a program.
+Configuration of PTS-1 controller
+To open configuration form go on the main form to menu item “Configuration” → “Fuel point configuration
+settings”.
+Configuration allows to set pump ports, probe ports, parameters in PTS-1 controller. It is quite convenient
+to use and open source code helps to understand better how the PTS-1 controller works.
+Pumps configuration tab allows to configure pumps ports of PTS-1 controller (like Pts_config.exe utility):
+www.technotrade.ua page 86 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+ATGs configuration tab allows to configure probe ports of PTS-1 controller (like Pts_config.exe utility):
+Parameters tab allows to read/write parameters in PTS-1 controller (like Pts_config.exe utility):
+www.technotrade.ua page 87 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tab “Version information” allows to receive information about date and version of PTS-1 controller
+firmware release and also a list of supported communication protocols of pumps and ATG systems (like
+Pts_config.exe utility):
+Main view
+www.technotrade.ua page 88 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+In main view 8 fuel point icons are shown on the screen, which are to be linked to physical fuel points and
+show its state.
+Each of the displayed fuel point icons contains information about:
+− Fuel point ID - a logical number of a fuel point in PTS-1 controller (number displayed in top left
+corner, displaying with a symbol “-” means a fuel point not set)
+− Status – status of a fuel point (displayed in a top line)
+− Mode – selection between Preset mode (required to specify money amount or volume of fuel to be
+dispensed) and Manual mode (does not require to specify money amount or volume of fuel to be
+dispensed)
+− Amount – money amount for which a fuel dispensing should be made (in a range 0,00 – 9999,99)
+− Volume – fuel volume for which a fuel dispensing should be made (in a range 0,00 – 9999,99)
+− Price – price per 1 liter/gallon of fuel
+− Nozzle – number of an active nozzle that is taken up (displaying with a symbol “-” means no nozzle
+is taken up)
+Possible statuses of fuel points:
+− OFFLINE – fuel point is not active, is not set or is controlled in a manual mode
+− IDLE – fuel point is in idle state (all nozzles are hang down)
+− NOZZLE – nozzle is taken up, waiting for allowance on fuel dispensing
+− READY – fuel dispensing is allowed, test of indicator is running
+− WORK – fuel dispensing is in process
+− TransactionCompleted – transaction is finished normally, waiting for a nozzle to be hang down
+− TransactionStopped b
+− ERROR – Status of an error
+Each of the fuel point icons contains the following buttons:
+1. 2. 3. Start – start of fuel dispensing (fuel point authorization)
+Stop – stop of fuel dispensing
+Settings – opens a window for setting of fuel point icon configurations
+4. Update prices – clicking leads to setting of prices per 1 liter/gallon of fuel for all nozzles of a fuel
+point with which current fuel point icon is linked
+5. Totals – opens a window for reading of fuel point totalizers
+Settings of fuel point icons
+www.technotrade.ua page 89 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Given window contains a dropdown list with all 4 pump ports of the PTS-1 controller, selecting each of
+which leads to displaying of all fuel points’ IDs and corresponding fuel points’ addresses configured to given
+pump port for a PTS-1 controller in a field below. Selecting one of the fuel point IDs and pressing OK button
+leads to linking given fuel point icon to selected fuel point ID and displaying its status. Selecting of a PTS
+pump port with value 0 will lead to switching off a fuel point icon.
+Given window for each of the fuel points also contains a list of 6 nozzles for setting of prices per 1
+liter/gallon of fuel, dispensed through these nozzles, in a range 0,00 – 999,99. If a fuel point has less than 6
+nozzles – prices will be set only for first number of nozzles, which a fuel point has.
+Clicking “Set prices” button leads to updating prices on selected fuel point. Clicking “Get prices” leads to
+receiving of prices from selected fuel point.
+Clicking OK button leads to updating a fuel point icon and updating (creating) a file “Config.xml” in root
+folder with configuration of fuel point icons. At launching of a PTS-1 controller .NET application next time
+configuration of fuel point icons will be read from this file “Config.xml” in root folder.
+Reading of fuel point total counters
+In the end of every dispensing application itself reads total counters from the pump on the nozzle, which
+was dispensing. At this a sign of totals reading appears in the left top corner of the pump icon (and under
+the header of the “T” command is displayed, which means that currently PTS-1 controller processes
+TotalInfoRequest command).
+Total counters can be updated at any moment from any of the pumps. Selecting of a button “Totals” on a
+fuel point icon and clicking a button Update in it leads to reading of total counters:
+www.technotrade.ua page 90 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Settings
+Selection from top menu “Configuration” an item “Settings” leads to opening a new window, which allows
+adjustment of
+Settings include the following:
+1. Authorization type of fuel dispensers:
+− Authorization by fuel volume – dispensers are to be authorized with volume
+− Authorization by money amount – dispensers are to be authorized with money amount
+2. Authorization polling:
+− Keep polling when pump is in READY state – after the Start button is clicked to authorize a
+dispenser, but nozzle is not taken up on the dispenser, the fuel point displays READY state; this
+option enables to keep constantly sending authorization command in READY state (until nozzle is
+taken up of fuel point and it is authorized)
+− Do not poll when pump is in READY state – after the Start button is clicked to authorize a
+dispenser, but nozzle is not taken up on the dispenser, the fuel point displays READY state; this
+option enables to send authorization command only once at clicking on a “Start” button of fuel
+point icon
+3. Extended commands:
+− Use general commands – PTS-1 controller can work with general commands (for prices containing
+up to 4 digits) and also with extended commands (for more quantity of digits in price values); this
+option sets to use general commands in communication with PTS-1 controller (prices containing
+with up to 4 digits)
+− Use extended commands – PTS-1 controller can work with general commands (for prices
+containing up to 4 digits) and also with extended commands (for prices containing with up to 9
+digits); this option sets to use extended commands in communication with PTS-1 controller (prices
+containing with up to 9 digits)
+4. Request total counters:
+− Request total counters – this option sets that application should automatically request total
+counters after each dispensing on dispenser is performed
+− Do not request total counters – this option sets that application should not automatically request
+total counters after each dispensing on dispenser is performed
+www.technotrade.ua page 91 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+5. Manual mode settings:
+− Authorize automatically at nozzle up – this option sets that once a nozzle is taken up on the
+dispenser – application should at once authorize it with a value set in field “Dose to authorize”; this
+options enables the application to set in a way, when order is preset from dispenser keyboard and
+application simply monitors the dispensers operation; in order this feature to work a fuel point
+should be switched to Manual mode of operation (see above), in Preset mode this feature does not
+work (preset is supposed to be given from application)
+− Authorize manually at nozzle up – this option sets that dispensers are to be controlled fully from
+the application by clicking on Start and Stop buttons both in preset and Manual modes of operation
+6. Quantity of digits:
+Setting of quantity of digits in money, volume, price and total counters (volume and money
+amount) - this option is required in cases when dispensers may have non-standard quantity of
+digits (for example 3 digits in volume and 0 digits in money amount)
+Displaying ATG systems probes states
+In ATG view 4 ATG icons are shown on the screen, which are to be linked to physical ATG systems (probes)
+and show its state.
+Each of the displayed ATG icons contains information about measured by ATG system (probe) parameters
+of petroleum product inside tanks. Depending on the type (communication protocol) of ATG system (probe)
+the following data may be displayed:
+- Product level (accuracy 0.1 mm)
+- Product volume (accuracy 1 liter)
+- Product temperature compensated volume (accuracy 1 liter)
+- Product ullage (volume) (accuracy 1 liter)
+- Water level (accuracy 0.1 mm)
+- Water volume (accuracy 1 liter)
+- Temperature (accuracy 0.1 degree Celsius)
+- Product density (accuracy 0.1 kg/m3)
+- Product mass (accuracy 0.1 kg)
+www.technotrade.ua page 92 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+If ATG system does not support any the parameters – a correspondent value label on ATG icon stays
+disabled. Picture of a tank on the ATG icon shows visually level of product in tank compared to tank height
+(which should be equal to ATG probe height). If ATG icon is linked with an ATG system – its state is
+“ACTIVE”, else –
+“NOT ACTIVE”.
+Settings of ATG probe icons
+Given window contains a dropdown list with all 3
+probe ports of the PTS-1 controller, selecting each
+of which leads to displaying of all ATG probes’ IDs
+and corresponding ATG probes’ addresses
+configured to given probe port for a PTS-1 controller
+in a field below. Selecting one of the ATG probe IDs
+and pressing OK button leads to linking given ATG
+probe icon to selected ATG probe ID and displaying
+its state. Selecting of a PTS probe port with value 0
+will lead to switching off a ATG probe icon.
+Given window for each of the ATG probes also
+contains a field for entering height of a tank with
+installed probe (which is considered to be a
+maximum level of product allowed for given tank).
+www.technotrade.ua page 93 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+TiT.PTS classes help file
+PTS-1 controller .NET application is based on a number of classes which documentation describing methods
+and properties is supplied together with it. Documentation is generated in a form of html-files.
+www.technotrade.ua page 94 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 controller test utilities
+Purpose
+PTS-1 controller test utilities are written in the following languages:
+− C#
+− VB 6.0
+− VB.NET
+− Java
+It is written for developers in order to give open source test application, which shows how to communicate
+with PTS-1 controller using commands from UniPump communication protocol without a necessity to
+implement this protocol from zero.
+Utility provides all operations with a PTS-1 controller. Thus developers using one of the above languages
+can view how control over PTS-1 controller is provided in the utility and implement the same functions in
+own developed applications for petrol stations.
+Visual Basic 6.0 (uses COM-object) Java (developed in NetBeans IDE)
+C# (developed in Visual Studio Express 2010) VB.NET (developed in Visual Studio Express 2010)
+www.technotrade.ua page 95 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS terminal utility
+Purpose
+PTS terminal is used in order to provide debugging of PTS-1 controller operation. It allows to send to PTS-1
+controller requests formed with bytes in accordance with UniPump communication protocol commands
+without a necessity to add framing bytes and CRC.
+This utility can be useful during development of own control software, when developers can test sending of
+commands to PTS-1 controller and receive its responses using this utility and in such a way compare then
+with responses processed in own developed control software.
+Commands to be sent to the
+specified logical address
+Selection of COM-port
+and a button for open/close
+Selection of the logical address,
+to which request is addressed
+Log of communication (shows
+commands and responses)
+www.technotrade.ua page 96 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step-by-step configuration of the PTS-1 controller SDK
+Purpose
+This step-by-step instruction is provided in order to simplify understanding of PTS-1 controller SDK
+operation and assembling. It describes basic steps to be made with PTS-1 controller SDK to assemble it
+correctly and also to install and configure software coming in its structure.
+Step 1. Downloading of PTS-1 controller SDK software
+Using a link for download of PTS-1 controller SDK software it is necessary to get all files from it. The files
+should include:
+- API tools:
+- Open source application programming interfaces, libraries, test utilities, applications and
+documentation for development the third party software for communication with PTS-1
+controller using various programming languages and environments
+- UniPump communication protocol description for PTS-1 controller
+- Software tools
+- PTS-1 controller configuration tool Pts_config.exe
+- latest stable PTS-1 controller firmware
+- Software simulators
+- SimUniPump - pumps software simulator
+- SimUniProbe - probes software simulator
+- Documentation
+- User manuals
+- Technical guides
+Step 2. Assembling PTS-1 controller SDK cabling and connection to computer
+For connection of PTS-1 controller SDK cabling it is necessary to have at least 2 USB-ports available in
+computer (one USB-port – for control system, other USB-port – for fuel dispenser software simulator or
+ATG probe software simulator). In case of absence of free USB-port it is possible to extend their number
+using a USB hub.
+PTS-1 controller SDK is generally supplied in a mounting box, in which the PTS-2 controller in located and
+cables are connected with USB/RS-485 and USB/RS-232 interface converters. In order to start operation, it
+is necessary to plug the USB output of the cables to USB ports of computer, after that power on the PTS-1
+controller SDK.
+www.technotrade.ua page 97 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Scheme of connections should be the following:
+1. Connection of computer with PTS-1 controller: connect cable coming from PC port of PTS-1 controller to
+USB-port of computer through USB/RS-232 interface converter (it will be seen as COM-port in the
+computer).
+2. Connection of pumps software simulator: connect cable coming from PUMP PORT 1 of PTS-1 controller
+to USB port of computer through USB/RS-485 interface converter (it will be seen as COM-port in the
+computer).
+3. Connection of pumps software simulator: connect cable coming from USER PORT of PTS-1 controller to
+USB port of computer through USB/RS-232 interface converter (it will be seen as COM-port in the
+computer).
+4. Switch on (power on) the PTS-1 controller SDK (requires 12 V DC power supply source).
+It is worth to mention that only 1 application can work with a specific COM-port at the time, 2 applications
+can not share the same COM-port.
+Note: the RS-232/USB and RS-485/USB interface converters are based on FTDI chips, it is possible to
+download their drivers from the following page: https://ftdichip.com/drivers/vcp-drivers/.
+www.technotrade.ua page 98 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 3. Starting of the PTS-1 controller configuration utility Pts_config.exe
+Run Pts_config.exe and from the main menu select connection type to be “Direct connection to PC COM-
+port”, select COM-port with connected PTS-1 controller and click on the “Connect” button. Make sure that
+the port is opened (red inscription “COM-port opened” should appear).
+Click on button “Request firmware version” to get firmware information from PTS-1 controller.
+www.technotrade.ua page 99 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 4. Configuration of pump ports
+Go to tab “Pumps configuration” and set pumps ports configuration as shown on below screenshot. Set
+protocol “2. UniPump” for pump port 1 and baud rate “4. 9600”. Assign this pump port to pumps 1 - 4, set
+the physical addresses of these pumps also 1 – 4.
+Click the button “Set pumps configuration” to save configuration in PTS-1 controller.
+www.technotrade.ua page 100 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 5. Configuration of probes ports
+Go to tab “Probes configuration” and set probes ports configuration as shown on below screenshot. Set
+protocol “9. UniProbe” for probe port USER and baud rate “4. 9600”. Assign this probe port to probes 1 - 3,
+set the physical addresses of these probes also 1 – 3.
+Click the button “Set pumps configuration” to save configuration in PTS-1 controller.
+www.technotrade.ua page 101 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 6. Configuration of PTS-1 controller parameters
+Go to tab “Parameters” and select from a device list item “PTS”, click on a button “Write default
+parameters”.
+www.technotrade.ua page 102 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 7. Configuration of pumps parameters
+On tab “Parameters” select from a device list item “Pump”, in a field “Number” select pump 1, in a protocol
+list –
+“2. UniPump” (which means configuration of UniPump protocol parameters for pump 1).
+Click on a button “Write default parameters” to write default values. Change the parameter with index 2
+“Protocol type” to value “1. UniPump protocol for PTS” as it is shown on below screenshot.
+Save current configuration for each of 4 pumps (select pumps one by one using field “Number”).
+At this step configuration of the PTS-1 controller is finished.
+www.technotrade.ua page 103 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 8. Configuration of pumps software simulator
+Run SimUniPump.exe and go to configuration of its properties. Set properties as shown on screenshot:
+After properties are set click OK and on the main form select a COM-port, to which pump port of is
+connected, and click “Open” button:
+After COM-port is opened in case if there is communication between the PTS-1 controller and pump
+simulator – you should see blinking of red squares located in left top corner of pump icons in pump
+simulator, and communication will be logged in log window of the simulator.
+www.technotrade.ua page 104 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+At this in PTS-1 controller on pump port 1 green and red LEDs will begin to blink. Blinking of the green LED
+means that PTS-1 controller is sending requests to the pump, blinking of the red LED means that the PTS-1
+controller receives responses from the pump.
+In case if only green LED is blinking on pump port 1 – there is a mistake in wiring connection or
+configuration of the equipment (PTS-1 controller or pump).
+www.technotrade.ua page 105 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 9. Configuration of ATG probes software simulator
+Run SimUniProbe.exe and go to configuration of its properties. Set properties as shown on screenshot:
+After properties are set click OK and on the main form select a COM-port, to which USER port of PTS-1
+controller is connected, and click “Open” button.
+After COM-port is opened in case if there is communication between the PTS-1 controller and ATG probes
+simulator – you should see blinking of red squares located in left top corner of ATG probes icons in ATG
+probes simulator, and communication will be logged in log window of the simulator.
+At this in PTS-1 controller on USER port green and red LEDs will begin to blink once per second. Blinking of
+the green LED means that PTS-1 controller is sending requests to the ATG, blinking of the red LED means
+that the PTS-1 controller receives responses from the ATG.
+In case if only green LED is blinking on USER port – there is a mistake in wiring connection or configuration
+of the equipment (PTS-1 controller or ATG).
+www.technotrade.ua page 106 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 10. Control over pumps and ATG probes in PTS-1 controller configuration and
+testing utility
+Go to tab “Control” in Pts_config.exe and click on the button “TURN ON”.
+Now it is necessary to set initial values in the pump simulator and ATG probes simulator to display them in
+the utility. Take up nozzles on the pumps and also set values for the ATGs (there is a possibility to emulate
+presence in the simulators to make them work if there was really process going on). In the Pts_config.exe
+utility you will see these changes.
+www.technotrade.ua page 107 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Now you are able to provide full control over the pumps and read receive data from the ATG probes:
+Pumps software simulator
+Try to make different operations with pumps: set/get prices, take up/down nozzles, get total counters,
+authorize a dispenser, others. Plays with decimal digits number to make them equal to used at your petrol
+stations (Note! Number of decimal digits should be also changed in pumps software simulator).
+ATG probes software simulator
+Try to change the measured values of fuel in tanks and see how soon they are updated in Pts_config.exe
+utility.
+www.technotrade.ua page 108 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Step 11. Configuration of PTS-1 controller .NET application for control over pumps
+and ATG probes
+The open-source application written in C# and VB.NET is a good place to start development of new control
+software for petrol stations. In this section we will see how it is easy to configure and run it.
+Compile “PTS application” project or simply run PtsApplication.exe (application is located in PTS SDK
+software kit and is located in API TOOLS folder for C# and VB.NET languages):
+Go to main menu item “Configuration” → “Settings” and set configuration as shown below:
+www.technotrade.ua page 109 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+In main form of the application for each of the fuel point icons go to setting (“Settings” button) and set a
+correspondent fuel point number (from fuel point port 1) and prices for each of the nozzles:
+− Fuel point icon #1 → FuelPoint ID = 1, Address = 1
+− Fuel point icon #2 → FuelPoint ID = 2, Address = 2
+− Fuel point icon #3 → FuelPoint ID = 3, Address = 3
+− Fuel point icon #4 → FuelPoint ID = 4, Address = 4
+Also here set prices for each of the nozzles:
+Now the main form of the application allows to provide control over pumps in pump software simulator
+(see configuration of the pumps simulator in step 7 above):
+www.technotrade.ua page 110 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+To view the measurement by the ATGs in PTS application go to main menu item “ATG” → “ATG
+measurement data”, where for each of the ATG icons in settings set configuration of ATG to get
+measurement values and also set tank’s height:
+www.technotrade.ua page 111 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Now PTS application is able to indicate current level measurement data from ATG system:
+www.technotrade.ua page 112 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+www.technotrade.ua page 113 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Now the PTS application correctly works with pumps and ATGs software simulators.
+www.technotrade.ua page 114 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+EXAMPLES OF FUEL DISPENSERS CONNECTION SCHEMES
+Below sections show examples of connection to various brands of fuel dispensers. This information is
+provided as an example. For reception of detailed information on connection to various brands of fuel
+dispensers, configuration of the fuel dispensers and configuration of PTS-1 controller please refer to our
+support mailbox support_1a@technotrade.ua.
+As it is seen from below connection examples some brands of fuel dispensers have RS-485 interface on
+board and thus are directly connected to PTS-1 controller, others do not have RS-485 interface and thus
+require additional interface converter for connection to PTS-1 controller. In some cases, various models of
+same brand of fuel dispensers have RS-485 interface, others – no. In such a way the best way to check how
+your fuel dispenser is connected is to take its mainboard photos and send to us on our support mailbox
+support_1a@technotrade.ua. Mainboard is normally located inside the fuel dispenser pumphead behind
+the displays.
+www.technotrade.ua page 115 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Gilbarco dispenser connection scheme
+Connection to Gilbarco dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “5. GILBARCO Two-Wire”, baud rate “3. 5787”
+.
+Gilbarco Encore 500 dispenser board
+Gilbarco dispenser ASSY
+M06104A001 rev. B board
+- +
+- +
+Gilbarco dispenser board Gilbarco Euroline dispenser board
+www.technotrade.ua page 116 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
++ -
++ -
+Gilbarco Highline / Dimension Assy dispenser board
+Gilbarco Endeavor dispenser board
++ -
+Gilbarco 3202 series dispenser board
++ -
+- +
+- +
+Gilbarco Endeavor dispenser board
++ -
+www.technotrade.ua page 117 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+- +
+Gilbarco Frontier dispenser board
+- +
+Gilbarco Advantage China motherboard
+Gilbarco Encore dispenser board - +
+www.technotrade.ua page 118 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Wayne Dresser dispenser connection scheme (RS-485 interface)
+Connection to Wayne Dresser dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Wayne Dresser iGEM dispenser board
+Line B
+Line A
+Wayne Dresser iGEM2 dispenser board
+Line B
+Line A
+Line A
+Line B
+Wayne Dresser STMTAX Duplex dispenser
+board
+Wayne Dresser x2000/x2003 dispenser interface board
+Line A
+Line A
+Line B
+Line B
+Line A
+Line B
+Line A
+Line B
+Wayne Dresser Global Vista CNG dispenser
+interface board
+Wayne Dresser V387 dispenser board
+www.technotrade.ua page 119 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Wayne Dresser dispenser connection scheme (current loop interface)
+Connection to Wayne Dresser dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “55. WAYNE USCL”, baud rate “4. 9600”
+.
+- +
+Wayne Dresser dispenser iGEM board
+Wayne Dresser V387 dispenser board
++
+-
+Wayne Dresser STMTAX Duplex dispenser
+Wayne Dresser iGEM2 dispenser board
+board
+-
++
+-
++
+www.technotrade.ua page 120 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tatsuno (Japan) dispenser connection scheme
+Connection to TATSUNO (Japan) dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “15. TATSUNO SS-LAN”, baud rate “5. 19200”
+.
+Line A
+Line B
+TATSUNO POS joint box
+www.technotrade.ua page 121 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tatsuno Europe (former Benc) dispenser connection scheme
+Connection to TATSUNO Benc (Europe) dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “7. TATSUNO Benc PDE”, baud rate “5. 19200”
+.
+Line A
+Line B
+TATSUNO Benc pumphead
+www.technotrade.ua page 122 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tokheim dispenser connection scheme
+Connection to Tokheim dispenser is made through 3-wire TH interface converter
+(https://www.technotrade.ua/tokheim-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 3-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “6. TOKHEIM”, baud rate “4. 9600”
+.
+TTC
+DCC
+TTD
+TTC
+DCC
+TTD
+Tokheim dispenser board
+Tokheim dispenser board
+www.technotrade.ua page 123 from 193
+www.technotrade.ua page 124 from 193
+Tokheim dispenser calculator with interface board
+Tokheim dispenser interface board
+TTC
+TTD
+DCC
+DCC
+TTD
+TTC
+Tokheim dispenser interface board Tokheim dispenser interface board
+DCC
+TTD
+TTC
+DCC
+TTD
+TTC
+Revision: R08 Review date: 12 June, 2024
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Tokheim Q320T dispenser calculator
+www.technotrade.ua page 125 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tokheim dispenser connection scheme (RS-485 interface)
+Connection to Tokheim dispenser through RS-485 interface is made directly without any interface
+converter.
+Configuration of PTS-1 controller pump port: protocol “6. TOKHEIM”, baud rate “4. 9600”
+.
+Line B
+Line A
+Tokheim dispenser motherboard
+www.technotrade.ua page 126 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Line B
+Line A
+Tokheim dispenser motherboard
+www.technotrade.ua page 127 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tokheim India dispenser connection scheme
+Connection to Tokheim India dispenser is made directly without any interface converter. Configuration of
+PTS-1 controller pump port: protocol “59. Tokheim TQCL”, baud rate “4. 9600”
+.
+Line A
+Line B
+www.technotrade.ua page 128 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Nuovo Pignone dispenser connection scheme (RS-485 interface)
+Connection to Nuovo Pignone dispensers with RS-485 interface is made directly without any interface
+converter. At this Nuovo Pignone dispenser should have an interface board for RS-485 interface and should
+be adjusted to have Wayne Dart protocol.
+Configuration of PTS-1 controller pump port: protocol “3. WAYNE Dart”, baud rate “4. 9600”
+.
+Nuovo Pignone interface boards for RS-485 interface
+for monoproduct and multiproducts dispensers
+More info can be found on:
+https://www.technotrade.ua/nuovo_pignone_interface_converter.html
+Line B
+Line A
+Nuovo Pignone monoproduct dispenser board
+Line B
+Line A
+Nuovo Pignone multiproduct dispenser board
+www.technotrade.ua page 129 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Nuovo Pignone dispenser connection scheme (4-wire current loop interface)
+Connection to Nuovo Pignone dispensers with 4-wire current loop interface is made through 4-wire NP
+interface converter (https://www.technotrade.ua/nuovo_pignone_interface_converter.html), which
+provides connection of RS-232/RS-485 interfaces to 4-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “24. NUOVO PIGNONE CL”, baud rate “1. 2400”
+.
+Tx-
+Tx+
+Rx-
+Rx+
+Tx-
+Tx+
+Rx-
+Rx+
+Nuovo Pignone dispenser board
+Nuovo Pignone dispenser board
+www.technotrade.ua page 130 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Logitron dispenser connection scheme (3-wire current loop interface)
+Connection to Logitron dispensers with 3-wire current loop interface is made through 3-wire LP interface
+converter (https://www.technotrade.ua/logitron-interface-converter.html), which provides connection of
+RS-232/RS-485 interfaces to 3-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “19. PUMALAN Marconi”, baud rate “1. 4800”
+.
+TxD
+Gnd
+RxD
+PUMA Logitron computer
+www.technotrade.ua page 131 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Bennett dispenser connection scheme (RS-485 interface)
+Connection to Bennett dispensers with RS-485 interface is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “22. BENNETT 485”, baud rate “2.4800”
+.
+Line B
+Line A
+Bennett dispenser board
+www.technotrade.ua page 132 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Bennett dispenser connection scheme (2-wire current loop interface)
+Connection to Bennett dispensers with 2-wire current loop interface is made through 2-wire GB interface
+converter (https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of
+RS-232/RS-485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “21. BENNETT”, baud rate “2.4800”
+.
++
+-
+Bennett dispenser board
+www.technotrade.ua page 133 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Batchen Email dispenser connection scheme
+Connection to Batchen dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “18. BATCHEN Electroline” (for single-product
+dispensers) or “39. BATCHEN MPP” (for multi-product dispensers), baud rate “2. 4800”
+.
++ -
++ -
+Batchen dispenser board
+Batchen dispenser board
+www.technotrade.ua page 134 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Scheidt & Bachmann T20 dispenser connection scheme
+Connection to Scheidt&Bachmann T20 dispenser is made through S&B T20 interface converter board.
+Configuration of PTS-1 controller pump port: protocol “2. UniPump”, baud rate “4. 9600”
+.
+DIP-switch for
+address setting
+Line A
+Line B
+Address setting on S&B T20 interface converter board using a DIP-switch
+Address 1 & 2 3 & 4 5 & 6 7 & 8 9 & 10 11 & 12 13 & 14 15 & 16
+DIP 1 OFF OFF OFF OFF ON ON ON ON
+DIP 2 OFF OFF ON ON OFF OFF ON ON
+DIP 3 OFF ON OFF ON OFF ON OFF ON
+DIP 4 OFF OFF OFF OFF OFF OFF OFF OFF
+www.technotrade.ua page 135 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Coptron dispenser connection scheme
+Connection to Coptron pumphead is made directly without any interface converter. Configuration of PTS-1
+controller pump port: “33. DART Simplex”, baud rate “4. 9600”
+.
+Line B
+Line A
+Line B
+Line A
+Coptron pumphead
+www.technotrade.ua page 136 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Midco dispenser connection scheme
+Connection to Midco pumphead is made directly without any interface converter. Configuration of PTS-1
+controller pump port: protocol “49. Midco”, baud rate “4. 9600”
+.
+Midco pumphead
+www.technotrade.ua page 137 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Petrotec dispenser connection scheme
+Connection to Petrotec dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “5. Gilbarco Two-Wire”, baud rate “3. 5787”
+.
+- +
++
+-
+Petrotec dispenser board
+www.technotrade.ua page 138 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Galileo dispenser connection scheme
+Connection to Galileo dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “10. GALILEO PumpControl”, baud rate “2. 4800”
+.
+- +
++ -
+Galileo dispenser board
+www.technotrade.ua page 139 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Prowalco dispenser connection scheme
+Connection to Prowalco dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “27. PROWALCO”, baud rate “2. 4800”
+.
++
+-
+Prowalco dispenser board
+www.technotrade.ua page 140 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Emgaz Dragon / Fornovo LPG dispenser with EsiWelma pumphead
+connection scheme
+Connection to EsiWelma pumphead is made through 3-wire LP interface converter
+(https://www.technotrade.ua/logitron-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 3-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “19. PUMALAN Marconi”, baud rate “2. 4800”
+.
+RxD
+TxD
+Gnd
+EsiWelma pumphead
+www.technotrade.ua page 141 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Maser dispenser connection scheme
+Connection to Maser dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “45. MASER GMS”, baud rate “4. 9600”
+.
+Maser dispenser computer connections label
+Line A
+Line B
+www.technotrade.ua page 142 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Petposan-S4 / Meksan-S4 / Europump-S4 / Yenen dispensers connection
+scheme
+Connection to S4 computer is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+- +
+S4 computer
+www.technotrade.ua page 143 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Yenen dispensers connection scheme
+Connection to S4s computer is made either directly from the PTS-1 controller using RS-485 interface (no
+additional interface converter is required) or through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+- +
+Line A
+Line B
+S4s computer
+www.technotrade.ua page 144 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Petposan-Beta / Europump-Beta dispensers connection scheme
+Connection to Beta computer is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+IntBox
+Petposan-Beta CPU
+www.technotrade.ua page 145 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+EuroPump dispenser connection scheme
+Connection to EuroPump dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+EuroPump EUROSTAR E2-SL dispenser computer EuroPump dispenser computer
++ -
+www.technotrade.ua page 146 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Mekser dispenser connection scheme
+Connection to Mekser dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+- +
+Mekser dispenser board
+www.technotrade.ua page 147 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Fuelsis dispenser connection scheme
+Connection to Fuelsis dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Fuelsis dispenser pumphead computer
+Line B
+Line A
+www.technotrade.ua page 148 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Mepsan Unimep dispenser connection scheme
+Connection to Mepsan dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Mepsan Unimep dispenser calculator
+Line A
+Line B
+Mepsan Unimep dispenser calculator
+Line A
+Line B
+Line B
+Line A
+Line B
+Line A
+Mepsan dispenser board
+www.technotrade.ua page 149 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Meksan / Wayne SU86 dispenser connection scheme
+Connection to Meksan / Wayne SU86 dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Line A
+Line B
+MEKSAN / WAYNE SU86 dispenser board
+www.technotrade.ua page 150 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Baransay dispenser connection scheme
+Connection to Baransay dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Line B
+Line A
+Baransay dispenser board
+www.technotrade.ua page 151 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+2A LPG dispenser connection scheme
+Connection to 2A dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Line B
+Line A
+2A dispenser computer
+www.technotrade.ua page 152 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Falcon dispenser connection scheme
+Connection to Falcon dispenser is made through 2-wire GB interface converter
+(https://www.technotrade.ua/gilbarco-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “43. FALCON LPG”, baud rate “3. 5787”
+.
++
+-
++
+-
+Falcon dispenser computer E11
+Falcon dispenser computer E22
+www.technotrade.ua page 153 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Tiger dispenser connection scheme
+Connection to Tiger dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “33. Dart Simplex”, baud rate “4. 9600”
+.
+Line B
+Line A
+Tiger dispenser mainboard
+www.technotrade.ua page 154 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Korea EnE (LG EnE) dispenser connection scheme
+Connection to Korea EnE (LG EnE) dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “20. EnE Korea”, baud rate “4. 9600”
+.
+Korea EnE / LG EnE dispenser board
+Line B
+Line A
+www.technotrade.ua page 155 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Dong Hwa Prime dispenser connection scheme
+Connection to Dong Hwa dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “31. DONG HWA Prime”, baud rate “4. 9600”
+.
+Line A
+Line B
+Dong Hwa dispenser board
+Line A
+Line B
+Dong Hwa dispenser board
+www.technotrade.ua page 156 from 193
+Dong Hwa dispenser board
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Gallagher (PEC) dispenser connection scheme
+Connection to PEC dispenser is made through 2-wire NZ interface converter
+(https://technotrade.kiev.ua/compac-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “25. GALLAGHER (PEC)”, baud rate “6. 1200”
+.
+-
++
+Retron 80 dispenser board connection
+www.technotrade.ua page 157 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Compac dispenser connection scheme
+Connection to Compac dispenser is made through 2-wire NZ interface converter
+(https://technotrade.kiev.ua/compac-interface-converter.html), which provides connection of RS-232/RS-
+485 interfaces to 2-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “25. GALLAGHER (PEC)”, baud rate “6. 1200”
+.
++
+-
+Compac dispenser junction box
+www.technotrade.ua page 158 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Safe dispenser connection scheme
+Connection to SAFE dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “9. SAFE Graf”, baud rate “4. 9600”
+.
+Line B
+Line A
+SAFE Graf electronic head PMII
+www.technotrade.ua page 159 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+MS Gas dispenser connection scheme
+Connection to MS GAS dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “53. KOREA CNG”, baud rate “4. 9600”
+.
+Line B
+Line A
+MS GAS dispenser WLD-4 motherboard
+www.technotrade.ua page 160 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Shibata dispenser connection scheme
+Connection to SHIBATA dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “15. SS-LAN”, baud rate “5. 19200”
+.
+Line B
+Line A
+SHIBATA dispenser motherboard
+www.technotrade.ua page 161 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Aspro Develco dispenser connection scheme
+Connection to Aspro Develco dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “8. DEVELCO”, baud rate “2. 4800”
+.
+Line A
+Line B
+Develco dispenser motherboard
+www.technotrade.ua page 162 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+HongYang dispenser connection scheme
+Connection to HongYang dispenser is made through 4-wire HY interface converter
+(https://www.technotrade.ua/hongyang-interface-converter.html), which provides connection of RS-
+232/RS-485 interfaces to 4-wire current loop interface.
+Configuration of PTS-1 controller pump port: protocol “42. HongYang” (in case of single-product dispenser)
+or “42. HongYang MPD 886” (in case of multi-product dispenser), baud rate “1. 2400”
+.
+Tx-
+Rx-
+Tx+
+Rx+
+Tx-
+Rx-
+Tx+
+Rx+
+Tx-
+Rx-
+Tx+
+Rx+
+HongYang
+dispenser boards
+Tx-
+Rx-
+Tx+
+Rx+
+www.technotrade.ua page 163 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+HongYang dispenser calculator
+HongYang dispenser calculator
+HongYang dispenser calculator
+Rx- Tx+ Rx+ Tx-
+www.technotrade.ua page 164 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Lanfeng dispenser connection scheme
+Connection to Lanfeng dispenser can be made either directly using RS-485 interface.
+Configuration of PTS-1 controller pump port: protocol “15. TATSUNO SS-LAN”, baud rate “5. 19200”
+.
+Gnd
+TxD
+RxD
++5V
+Line A
+Line B
+Lanfeng RS-232 dispenser board
+Line A
+Lanfeng RS-485 dispenser board
+Line B
+Lanfeng RS-485 dispenser board
+www.technotrade.ua page 165 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Sanki dispenser connection scheme
+Connection to Sanki dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Sanki dispenser board
+Line A
+Line B
+Sanki dispenser board
+Line B
+Line A
+www.technotrade.ua page 166 from 193
+PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Revision: R08 Review date: 12 June, 2024
+Sanki dispenser board
+Line B
+Line A
+Line A
+Line B
+Sanki dispenser board
+www.technotrade.ua page 167 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Datian Machines dispenser connection scheme
+Connection to Datian Machines dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Line A
+Line B
+Datian Machines dispenser interface board
+www.technotrade.ua page 168 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Eaglestar dispenser connection scheme
+Connection to Eaglestar dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Eaglestar dispenser mainboard
+Line A
+Line B
+www.technotrade.ua page 169 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Blue Sky dispenser connection scheme
+Connection to Blue Sky dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “26. Blue Sky”, baud rate “2. 4800”
+.
+Line A
+Line B
+Line A
+Line B
+Blue Sky LT-B dispenser board
+Blue Sky LT-L/LT-LG dispenser board
+Line A
+Line B
+Blue Sky LT-C/LT-H dispenser board
+Line A
+Line B
+Blue Sky LT-B Pro dispenser board
+www.technotrade.ua page 170 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Censtar dispenser connection scheme
+Connection to Censtar dispenser can be made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Censtar 3100 model interface board
+Line B
+Line A
+Line A
+Line B
+Censtar 6200 model interface board
+www.technotrade.ua page 171 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Knipflow dispenser connection scheme
+Connection to Knipflow dispenser can be made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Knipflow dispenser mainboard
+Line A
+Line B
+www.technotrade.ua page 172 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Changlong dispenser connection scheme
+Connection to Changlong dispenser can be made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “64. Changlong”, baud rate “4. 9600”
+.
+Changlong dispenser
+interface boardboard
+Line B
+Line A
+www.technotrade.ua page 173 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Zcheng Genuine Machines dispenser connection scheme
+Connection to Zcheng Genuine Machines dispenser can be made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “57. Zcheng Genuine Machines”, baud rate “4. 9600”
+or “2. 4800”
+.
+Line A
+Line B
+Zcheng Genuine dispenser interface boardboard
+www.technotrade.ua page 174 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Bailong dispenser connection scheme
+Connection to Bailong dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “52. SANKI NG”, baud rate “4. 9600”
+.
+Line A
+Line B
+Bailong dispenser board
+www.technotrade.ua page 175 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Topaz dispenser connection scheme
+Connection to TOPAZ dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “41. TOPAZ”, baud rate “2. 4800”
+.
+Line B
+Line A
+Topaz dispenser system board
+www.technotrade.ua page 176 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Shelf dispenser connection scheme
+Connection to SHELF dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “16. SHELF”, baud rate “4. 9600”
+.
+Shelf dispenser system board
+Line A
+Line B
+www.technotrade.ua page 177 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+UniCon dispenser connection scheme
+Connection to UniCon dispenser is made directly without any interface converter.
+Configuration of PTS-1 controller pump port: protocol “16. UniPump”, baud rate “4. 9600”
+.
+Line A
+Line B
+UniCon dispenser system board
+www.technotrade.ua page 178 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Mechanical dispensers connection scheme
+Connection to mechanical dispensers or to dispensers, which communication protocol is not supported, can
+be done through MC-4 controller over mechanical dispensers (https://www.technotrade.ua/mechanical-
+controller.html), which provides direct control over operation of electronic and mechanical fuel dispensers
+by controlling dispenser’s internal resources: motor, pulse sensor, nozzle, slowdown valve..
+Configuration of PTS-1 controller pump port: protocol “2. UniPump”, baud rate “4. 9600”
+.
+www.technotrade.ua page 179 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+EXAMPLES OF ATG SYSTEMS CONNECTION SCHEMES
+Below sections show examples of connection to various brands of probes and ATG systems. This
+information is provided as an example. For reception of detailed information on connection to various
+brands of probes and ATG systems, configuration of the probes and ATG systems and configuration of PTS-
+1 controller please refer to our support mailbox support_1a@technotrade.ua.
+www.technotrade.ua page 180 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Gilbarco Veeder Root TLS consoles connection scheme
+Connection to Gilbarco Veeder Root TLS system is made directly to one of probe ports of PTS-1 controller
+(RS-232 interface).
+Configuration of PTS-1 controller probe port: protocol “1. GILBARCO Veeder Root”, baud rate is selected to
+be equal to set in TLS ATG system.
+Gnd
+TxD
+RxD
+RS-232 port
+Gilbarco Veeder Root TLS ATG console
+Start Italiana console connection scheme
+Connection to Start Italiana console is made directly to one of probe ports of PTS-1 controller (RS-232
+interface).
+Configuration of PTS-1 controller probe port: protocol “1. GILBARCO Veeder Root”, baud rate is selected to
+be equal to set in Start Italiana console.
+Gnd
+TxD
+RxD
+RS-232 port
+Start Italiana ATG console
+www.technotrade.ua page 181 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Start Italiana wired probes connection scheme
+Connection to Start Italiana wired probes is made directly to DISP (RS-485) port of PTS-1 controller (RS-485
+interface).
+Configuration of PTS-1 controller probe port: protocol “2. START ITALIANA SMT-XMT”, baud rate “4. 9600”
+.
+Line A
+Line B
+Start Italiana probe (RS-485)
+Start Italiana wireless probes connection scheme
+Connection to Start Italiana wireless probes is made through wireless receiver to one of probe ports of PTS-
+1 controller (RS-232 interface or RS-485 interface).
+Configuration of PTS-1 controller probe port: protocol “2. START ITALIANA SMT-XMT”, baud rate “4. 9600”.
+Gnd
+TxD
+RxD
+RS-232 port
+Start Italiana wireless repeater
+www.technotrade.ua page 182 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Alisonic wired probes connection scheme
+Connection to Alisonic wired probes is made directly to DISP (RS-485) port of PTS-1 controller (RS-485
+interface).
+Configuration of PTS-1 controller probe port: protocol “22. Alisonic Delphi”, baud rate “4. 9600”
+.
+Line A
+Line B
+Alisonic probe (RS-485)
+Alisonic wireless probes connection scheme
+Connection to Alisonic wireless probes is made through Alisonic wireless receiver to DISP (RS-485) port of
+PTS-1 controller (RS-485 interface).
+Configuration of PTS-1 controller probe port: protocol “22. Alisonic Delphi”, baud rate “4. 9600”
+.
+Line A
+Line B
+Alisonic wireless receiver
+www.technotrade.ua page 183 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Struna ATG system connection scheme
+Connection to Struna system is made directly to one of probe ports of PTS-1 controller (RS-232 interface).
+Configuration of PTS-1 controller probe port: protocol “4. STRUNA Kedr spec. 1.4”, baud rate is selected to
+be equal to set in Struna ATG system.
+Gnd
+TxD
+RxD
+RS-232 port
+Struna ATG calculation unit
+OPW Site Sentinel ATG system connection scheme
+Connection to OPW system is made directly to one of probe ports of PTS-1 controller (RS-232 interface).
+Configuration of PTS-1 controller probe port: protocol “3. Petrovend4”, baud rate is selected to be equal to
+set in OPW ATG system.
+Gnd
+TxD
+RxD
+RS-232 port
+OPW ATG console
+STRUNA ATG calculation unit
+www.technotrade.ua page 184 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Colibri ATG system connection scheme
+Connection to Colibri system is made directly to one of probe ports of PTS-1 controller (RS-232 interface).
+Configuration of PTS-1 controller probe port: protocol “1. Gilbarco Veeder Root”, baud rate is selected to be
+equal to set in Colibri ATG system.
+Gnd
+TxD
+RxD
+RS-232 port
+Colibri ATG console
+STRUNA ATG
+calculation unit
+Fafnir ATG system connection scheme
+Connection to FAFNIR system is made directly to one of probe ports of PTS-1 controller (RS-232 interface).
+Configuration of PTS-1 controller probe port: protocol “5. Fafnir Visy-Quick”, baud rate is selected to be
+equal to set in FAFNIR ATG system.
+Gnd
+TxD
+RxD
+RS-232 port
+FAFNIR-Command ATG console
+STRUNA ATG calculation unit
+www.technotrade.ua page 185 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Hectronic ATG probes connection scheme
+Connection to Hectronic probes is made directly to one of probe ports of PTS-1 controller (RS-232
+interface) to Hectronic OptiLevel Supply box.
+Configuration of PTS-1 controller probe port: protocol “8. Hectronic HLS”, baud rate “4. 9600”
+.
+Gnd
+TxD
+RxD
+RS-232 port
+Hectronic OptiLevel Supply box
+STRUNA ATG calculation unit
+Vega radar level meters
+Connection to VEGA meters is made through a VEGAMET probes is made directly to one of probe ports of
+PTS-1 controller (RS-232 interface) to Hectronic OptiLevel Supply box.
+Configuration of PTS-1 controller probe port: protocol “10. Vega”, baud rate “4. 9600”.
+Gnd
+TxD
+RxD
+RS-232 port
+VEGAMET signal
+conditioning instrument
+VEGAPULS
+radar meter
+www.technotrade.ua page 186 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Windbell magnetostrictive probes connection scheme
+Connection to Windbell probes is made directly to DISP (RS-485) port of PTS-1 controller (RS-485 interface).
+Configuration of PTS-1 controller probe port: protocol “11. Windbell”, baud rate “4. 9600”
+.
+Line B
+Line A
+www.technotrade.ua page 187 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+North Falcon wired probes connection scheme
+Connection to North Falcon wired probes is made directly to DISP (RS-485) port of PTS-1 controller (RS-485
+interface).
+Configuration of PTS-1 controller probe port: protocol “22. Alisonic Delphi”, baud rate “4. 9600”
+.
+Line A
+Line B
+North Falcon probe (RS-485)
+North Falcon wireless probes connection scheme
+Connection to North Falcon wireless probes is made through North Falcon wireless receiver to DISP (RS-
+485) port of PTS-1 controller (RS-485 interface).
+Configuration of PTS-1 controller probe port: protocol “22. Alisonic Delphi”, baud rate “4. 9600”
+.
+Line A
+Line B
+North Falcon wireless receiver
+www.technotrade.ua page 188 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+PTS-1 CONTROLLER PCB BOARD
+PCB board top view
+PCB board bottom view
+www.technotrade.ua page 189 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+Board dimensions
+www.technotrade.ua page 190 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+RS-232 PORT CABLE CONNECTOR
+Pinout of cable used for connection RS-232 ports of PTS-1 controller to computer:
+DB-9F connector
+STRUNA ATG
+calculation unit
+To PTS RS-232 port
+To COM-port of computer
+STRUNA ATG
+To pin TxD
+calculation unit
+To pin RxD
+To pin GND
+STRUNA ATG calculation unit
+Pin 2
+Pin 3
+Pin 5
+www.technotrade.ua page 191 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+CERTIFICATES
+PTS-1 controller over fuel dispensers and ATG systems for petrol stations complies with the essential
+requirements of the European Directive:
+- Electromagnetic Compatibility (EMC) Directive 2004/108/EC
+Conformity is assessed in accordance to the following standards:
+1. 2. Radio disturbance characteristics – EN 55022:2010 (IEC CISPR 22:2008), Class A
+Immunity characteristics – EN 55024:2010 (IEC CISPR 24:2010)
+We hereby declare that the apparatus named above has been designed to comply with the relevant
+sections of the above referenced specifications. The unit complies with all applicable Essential
+Requirements of the Directive.
+The conducted tests are documented in the test reports No. 1047/1-5-2014 and 1047/2-5-2014 and are
+maintained at the corporate headquarters of Technotrade LLC as an evidence of conformity.
+www.technotrade.ua page 192 from 193
+Revision: R08 PTS-1 CONTROLLER OVER FUEL DISPENSERS AND ATG SYSTEMS FOR PETROL STATIONS (PTS-1, rev. PTS-U5-v7)
+Review date: 12 June, 2024
+ORDER INFORMATION
+Variant of PTS-1 controller supply is marked with PTS1-y-z, where
+- y – type of supply:
+o “PCB” in case if PTS-1 controller is supplied in a view of electric board;
+o “BOX” in case if PTS-1 controller is supplied installed in metal box with hermetic inputs for
+connection of wires and a button for power supply switching;
+o “SDK” in case if PTS-1 controller SDK is supplied installed in metal box with hermetic inputs for
+connection of wires and a button for power supply switching;
+- z – variant of supply:
+o 001 – variant of supply with installed terminal blocks for controller ports
+o 002 – variant of supply without terminal blocks for controller ports (connection is made using
+connectors for stubs)
+Examples of order:
+- order of PTS-1 controller in a view of electric board: PTS1-PCB-001;
+- order of PTS-1 controller installed in a metal box: PTS1-BOX-001;
+- order of PTS-1 controller SDK: PTS1-SDK-001
+www.technotrade.ua page 193 from 193

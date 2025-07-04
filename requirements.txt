@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+pyserial
+python-multipart
+swagger-ui-bundle
+python-json-logger
+asyncio-mqtt
+requests
