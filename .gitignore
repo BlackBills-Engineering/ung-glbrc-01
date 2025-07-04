@@ -2,3 +2,4 @@ venv
 scripts
 docker*
 __pycache__
+logs

@@ -7,7 +7,6 @@ import logging
 import argparse
 from pathlib import Path
 
-# Add project root to Python path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
@@ -21,7 +20,7 @@ def setup_logging():
         format=Config.LOG_FORMAT,
         handlers=[
             logging.StreamHandler(sys.stdout),
-            logging.FileHandler('logs.log')
+            logging.FileHandler('logs/logs.log')
         ]
     )
 
@@ -63,7 +62,6 @@ def main():
     Config.API_RELOAD = args.reload
     Config.LOG_LEVEL = args.log_level
     
-    # Setup logging
     setup_logging()
     
     logger = logging.getLogger("GilbarcoStartup")
@@ -72,13 +70,12 @@ def main():
     
     try:
         import uvicorn
-        from main import app
         
         uvicorn.run(
-            app,
+            "main:app",
             host=args.host,
             port=args.port,
-            reload=args.reload,
+            reload=True,  # Always use reload
             log_level=args.log_level.lower()
         )
         

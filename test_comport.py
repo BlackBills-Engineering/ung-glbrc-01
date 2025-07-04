@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Comprehensive COM Port Testing Suite for Gilbarco SK700-II System
+COM Port Testing Suite for Gilbarco SK700-II System
 
 This script provides extensive testing of COM port connections and Gilbarco protocol communication.
 Designed to run on Windows systems with actual COM ports.
@@ -34,7 +34,7 @@ import json
 
 # Import our Gilbarco protocol classes
 try:
-    from pump_controller import GilbarcoTwoWireProtocol, SerialConnection, PumpController
+    from pump_controller import GilbarcoTwoWireProtocol, SerialConnection, TwoWireManagerRegistry
     from models import PumpInfo, PumpStatus
     from config import Config
 except ImportError as e:
@@ -43,7 +43,7 @@ except ImportError as e:
 
 
 class COMPortTester:
-    """Comprehensive COM port testing suite"""
+    """COM port testing suite"""
     
     def __init__(self, log_level: str = "INFO"):
         self.setup_logging(log_level)
@@ -53,7 +53,7 @@ class COMPortTester:
         
     def setup_logging(self, level: str):
         """Configure detailed logging"""
-        log_filename = f"comport_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+        log_filename = f"logs/comport_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
         
         logging.basicConfig(
             level=getattr(logging, level.upper()),
@@ -67,7 +67,7 @@ class COMPortTester:
         # Set specific logger levels
         logging.getLogger("COMPortTester").setLevel(getattr(logging, level.upper()))
         logging.getLogger("SerialConnection").setLevel(logging.DEBUG)
-        logging.getLogger("PumpController").setLevel(logging.DEBUG)
+        logging.getLogger("TwoWireManager").setLevel(logging.DEBUG)
         
         print(f"Logging to: {log_filename}")
     
@@ -213,8 +213,8 @@ class COMPortTester:
                 is_connected=False
             )
             
-            # Create pump controller
-            controller = PumpController(pump_info)
+            # Create manager for this COM port
+            manager = TwoWireManagerRegistry.get_manager(port_name)
             
             # Test commands
             test_commands = [
@@ -243,8 +243,8 @@ class COMPortTester:
                     })
                     
                     # Try to send command (will fail if no pump connected, but tests the protocol)
-                    if controller.connection.connect():
-                        response = controller.connection.send_command(command, expect_response=True)
+                    if manager.connect():
+                        response = manager.connection.send_command(command, expect_response=True)
                         
                         if response:
                             response_hex = response.hex().upper()
@@ -265,7 +265,7 @@ class COMPortTester:
                         else:
                             self.logger.info("No response received (expected if no pump connected)")
                         
-                        controller.disconnect()
+                        manager.disconnect()
                     else:
                         self.logger.warning(f"Could not connect to {port_name}")
                     
@@ -530,9 +530,9 @@ class COMPortTester:
         
         return result
     
-    def run_comprehensive_test(self, port_name: str) -> Dict:
+    def runc_test(self, port_name: str) -> Dict:
         """Run all tests on a specific COM port"""
-        self.logger.info(f"=== Comprehensive Test Suite for {port_name} ===")
+        self.logger.info(f"=== Test Suite for {port_name} ===")
         
         port_results = {
             'port': port_name,
@@ -569,14 +569,14 @@ class COMPortTester:
                 self.logger.warning(f"Skipping advanced tests for {port_name} - basic connection failed")
         
         except Exception as e:
-            self.logger.error(f"Comprehensive test failed for {port_name}: {str(e)}")
+            self.logger.error(f"Test failed for {port_name}: {str(e)}")
         
         port_results['test_end_time'] = datetime.now().isoformat()
         
         return port_results
     
     def generate_report(self):
-        """Generate comprehensive test report"""
+        """Generate test report"""
         self.logger.info("=== Generating Test Report ===")
         
         total_duration = datetime.now() - self.start_time
@@ -626,7 +626,7 @@ class COMPortTester:
                 report['summary']['loopback_capable_ports'] += 1
         
         # Save report to JSON file
-        report_filename = f"comport_test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        report_filename = f"logs/comport_test_report_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         
         try:
             with open(report_filename, 'w') as f:
@@ -651,7 +651,7 @@ class COMPortTester:
 
 def main():
     """Main entry point"""
-    parser = argparse.ArgumentParser(description="Comprehensive COM Port Testing Suite")
+    parser = argparse.ArgumentParser(description="COM Port Testing Suite")
     parser.add_argument('--port', type=str, help="Specific COM port to test (e.g., COM1)")
     parser.add_argument('--scan-all', action='store_true', help="Test all available COM ports")
     parser.add_argument('--verbose', action='store_true', help="Enable verbose logging")
@@ -678,7 +678,7 @@ def main():
         if args.port:
             # Test specific port
             tester.logger.info(f"Testing specific port: {args.port}")
-            results = tester.run_comprehensive_test(args.port)
+            results = tester.runc_test(args.port)
             tester.test_results[args.port] = results
             
         elif args.scan_all:
@@ -694,7 +694,7 @@ def main():
             for port_info in ports:
                 port_name = port_info['device']
                 tester.logger.info(f"Testing {port_name}...")
-                results = tester.run_comprehensive_test(port_name)
+                results = tester.runc_test(port_name)
                 tester.test_results[port_name] = results
         
         else:
@@ -721,14 +721,14 @@ def main():
                     # Test all ports
                     for port_info in ports:
                         port_name = port_info['device']
-                        results = tester.run_comprehensive_test(port_name)
+                        results = tester.runc_test(port_name)
                         tester.test_results[port_name] = results
                 else:
                     # Test specific port
                     port_index = int(choice) - 1
                     if 0 <= port_index < len(ports):
                         port_name = ports[port_index]['device']
-                        results = tester.run_comprehensive_test(port_name)
+                        results = tester.runc_test(port_name)
                         tester.test_results[port_name] = results
                     else:
                         tester.logger.error("Invalid selection")

@@ -5,15 +5,26 @@ from datetime import datetime
 
 
 class PumpStatus(str, Enum):
-    """Pump status enumeration"""
-    IDLE = "IDLE"
-    DISPENSING = "DISPENSING" 
-    COMPLETE = "COMPLETE"
-    ERROR = "ERROR"
-    OFFLINE = "OFFLINE"
-    CALLING = "CALLING"
-    AUTHORIZED = "AUTHORIZED"
-    STOPPED = "STOPPED"
+    """    
+    Protocol Status Codes:
+    - 0x0: Data Error → ERROR
+    - 0x6: Off → IDLE  
+    - 0x7: Call → CALLING
+    - 0x8: Authorized/Not Delivering → AUTHORIZED
+    - 0x9: Busy → DISPENSING
+    - 0xA: Transaction Complete (PEOT) → COMPLETE
+    - 0xB: Transaction Complete (FEOT) → COMPLETE  
+    - 0xC: Pump Stop → STOPPED
+    - 0xD: Send Data → ERROR (special state)
+    """
+    IDLE = "IDLE"                    # Pump is off/ready (protocol 0x6)
+    CALLING = "CALLING"              # Customer requesting service (protocol 0x7)
+    AUTHORIZED = "AUTHORIZED"        # Pump authorized but not dispensing (protocol 0x8)
+    DISPENSING = "DISPENSING"        # Actively dispensing fuel (protocol 0x9)
+    COMPLETE = "COMPLETE"            # Transaction finished (protocol 0xA/0xB)
+    STOPPED = "STOPPED"              # Emergency stop activated (protocol 0xC)
+    ERROR = "ERROR"                  # Communication/data error (protocol 0x0/0xD)
+    OFFLINE = "OFFLINE"              # No communication with pump
 
 
 class PumpInfo(BaseModel):
@@ -26,11 +37,25 @@ class PumpInfo(BaseModel):
 
 
 class PumpStatusResponse(BaseModel):
-    """Pump status response"""
-    pump_id: int = Field(..., description="Pump identifier")
+    """
+    Pump status response with detailed protocol information
+    
+    Example:
+    {
+        "pump_id": 1,
+        "status": "AUTHORIZED", 
+        "last_updated": "2025-07-05T12:34:56.789Z",
+        "error_message": null,
+        "raw_status_code": "0x8",
+        "wire_format": "0x81"
+    }
+    """
+    pump_id: int = Field(..., description="Pump identifier (1-16)")
     status: PumpStatus = Field(..., description="Current pump status")
-    last_updated: datetime = Field(..., description="Last status update time")
-    error_message: Optional[str] = Field(None, description="Error message if status is ERROR")
+    last_updated: datetime = Field(..., description="Last status update timestamp")
+    error_message: Optional[str] = Field(None, description="Error details if status is ERROR")
+    raw_status_code: Optional[str] = Field(None, description="Raw protocol status code (hex)")
+    wire_format: Optional[str] = Field(None, description="Complete wire format byte (hex)")
     
     
 class TransactionData(BaseModel):
