@@ -1,0 +1,228 @@
+2025-07-04 18:21:43,421 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:21:43,451 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:21:43,451 - API - INFO - API Version: 1.0.0
+2025-07-04 18:21:43,451 - API - INFO - Startup time: 2025-07-04 18:21:43.451891
+2025-07-04 18:21:43,451 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:21:43,451 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:22:15,678 - API - ERROR - Unhandled exception: 'PumpManager' object has no attribute 'get_all_pumps'
+Traceback (most recent call last):
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/middleware/cors.py", line 83, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 79, in __call__
+    raise exc
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 68, in __call__
+    await self.app(scope, receive, sender)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 20, in __call__
+    raise e
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/fastapi/middleware/asyncexitstack.py", line 17, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/routing.py", line 718, in __call__
+    await route.handle(scope, receive, send)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/routing.py", line 276, in handle
+    await self.app(scope, receive, send)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/starlette/routing.py", line 66, in app
+    response = await func(request)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/fastapi/routing.py", line 274, in app
+    raw_response = await run_endpoint_function(
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/venv/lib/python3.9/site-packages/fastapi/routing.py", line 191, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/Users/mur_io/projects/bbe/ung-gilbarco-1/api.py", line 88, in health_check
+    pumps = pump_manager.get_all_pumps()
+AttributeError: 'PumpManager' object has no attribute 'get_all_pumps'
+2025-07-04 18:23:13,781 - API - INFO - === API: Pump Discovery Request ===
+2025-07-04 18:23:13,782 - API - INFO - COM ports: ['string']
+2025-07-04 18:23:13,782 - API - INFO - Address range: 1 to 16
+2025-07-04 18:23:13,782 - API - INFO - Timeout: 2.0s
+2025-07-04 18:23:13,782 - PumpManager - INFO - === Starting Pump Discovery ===
+2025-07-04 18:23:13,782 - PumpManager - INFO - Address range: 1 to 16
+2025-07-04 18:23:13,782 - PumpManager - INFO - Timeout per pump: 2.0s
+2025-07-04 18:23:13,782 - PumpManager - INFO - Scanning specified COM ports: ['string']
+2025-07-04 18:23:13,782 - PumpManager - INFO - Starting scan of 1 COM ports...
+2025-07-04 18:23:13,782 - PumpManager - INFO - [1/1] Scanning string...
+2025-07-04 18:23:13,783 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,783 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,783 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,784 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,784 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,784 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,784 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,784 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,784 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,784 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,785 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,785 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,785 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,785 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,785 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,785 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,785 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,786 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,786 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,786 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,786 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,786 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,786 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,786 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,787 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,787 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,787 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,787 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,787 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,787 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,788 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,788 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,788 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,788 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,788 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,788 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,789 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,789 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,789 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,789 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,789 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,789 - SerialConnection-string - INFO - [string] Attempting to connect with Gilbarco Two-Wire Protocol settings
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG - [string] Connection parameters:
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Port: string
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Baudrate: 9600
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Parity: E
+2025-07-04 18:23:13,789 - SerialConnection-string - DEBUG -   - Timeout: 2.0s
+2025-07-04 18:23:13,789 - SerialConnection-string - ERROR - [string] Serial connection failed: [Errno 2] could not open port string: [Errno 2] No such file or directory: 'string'
+2025-07-04 18:23:13,789 - PumpManager - INFO -   Port string scan complete: 0 pumps found
+2025-07-04 18:23:13,789 - PumpManager - INFO - === Discovery Summary ===
+2025-07-04 18:23:13,789 - PumpManager - INFO - Total pumps found: 0
+2025-07-04 18:23:13,789 - PumpManager - INFO - Scan duration: 0.01s
+2025-07-04 18:23:13,789 - PumpManager - INFO - Ports scanned: 1
+2025-07-04 18:23:13,790 - PumpManager - INFO - === End Discovery ===
+2025-07-04 18:23:13,790 - API - INFO - === API: Discovery Complete ===
+2025-07-04 18:23:13,790 - API - INFO - Total pumps found: 0
+2025-07-04 18:23:13,790 - API - INFO - Scan duration: 0.01s
+2025-07-04 18:23:40,385 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:23:40,386 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:23:40,386 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:23:40,386 - API - INFO - API shutdown complete
+2025-07-04 18:23:41,121 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:23:41,148 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:23:41,149 - API - INFO - API Version: 1.0.0
+2025-07-04 18:23:41,149 - API - INFO - Startup time: 2025-07-04 18:23:41.149126
+2025-07-04 18:23:41,149 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:23:41,149 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:23:55,808 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:23:55,808 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:23:55,808 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:23:55,808 - API - INFO - API shutdown complete
+2025-07-04 18:23:56,428 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:23:56,457 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:23:56,457 - API - INFO - API Version: 1.0.0
+2025-07-04 18:23:56,458 - API - INFO - Startup time: 2025-07-04 18:23:56.458030
+2025-07-04 18:23:56,458 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:23:56,458 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:25:11,426 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:25:11,427 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:25:11,427 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:25:11,427 - API - INFO - API shutdown complete
+2025-07-04 18:25:12,127 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:25:12,157 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:25:12,157 - API - INFO - API Version: 1.0.0
+2025-07-04 18:25:12,157 - API - INFO - Startup time: 2025-07-04 18:25:12.157401
+2025-07-04 18:25:12,157 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:25:12,157 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:26:11,519 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:26:11,519 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:26:11,519 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:26:11,519 - API - INFO - API shutdown complete
+2025-07-04 18:26:12,149 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:26:12,175 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:26:12,175 - API - INFO - API Version: 1.0.0
+2025-07-04 18:26:12,175 - API - INFO - Startup time: 2025-07-04 18:26:12.175963
+2025-07-04 18:26:12,176 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:26:12,176 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:26:46,656 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:26:46,656 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:26:46,657 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:26:46,657 - API - INFO - API shutdown complete
+2025-07-04 18:26:47,592 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:26:47,629 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:26:47,630 - API - INFO - API Version: 1.0.0
+2025-07-04 18:26:47,630 - API - INFO - Startup time: 2025-07-04 18:26:47.630225
+2025-07-04 18:26:47,630 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:26:47,630 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:26:51,521 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:26:51,522 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:26:51,523 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:26:51,524 - API - INFO - API shutdown complete
+2025-07-04 18:26:52,137 - asyncio - DEBUG - Using selector: KqueueSelector
+2025-07-04 18:26:52,166 - API - INFO - === Starting Gilbarco SK700-II Pump Controller API ===
+2025-07-04 18:26:52,166 - API - INFO - API Version: 1.0.0
+2025-07-04 18:26:52,166 - API - INFO - Startup time: 2025-07-04 18:26:52.166570
+2025-07-04 18:26:52,166 - API - INFO - Swagger UI available at: /docs
+2025-07-04 18:26:52,166 - API - INFO - ReDoc available at: /redoc
+2025-07-04 18:31:27,173 - API - INFO - === Shutting down Pump Controller API ===
+2025-07-04 18:31:27,174 - PumpManager - INFO - Shutting down pump manager...
+2025-07-04 18:31:27,176 - PumpManager - INFO - Pump manager shutdown complete
+2025-07-04 18:31:27,176 - API - INFO - API shutdown complete
