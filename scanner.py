@@ -7,7 +7,7 @@ from enum import Enum
 from typing import Tuple
 
 COM_PORT = "COM3"
-BAUDRATE = 5787
+BAUDRATE = 9600
 TIMEOUT = 1.0
 ADDRESS_RANGE = (1, 16)
 
