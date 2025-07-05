@@ -6,7 +6,7 @@ from typing import Dict, List, Optional, Tuple
 from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 
-from models import PumpInfo, PumpStatusResponse, PumpDiscoveryResult
+from models import PumpInfo, PumpStatusResponse, PumpDiscoveryResult, TransactionData
 from pump_controller import TwoWireManagerRegistry, TwoWireManager
 
 
@@ -236,6 +236,25 @@ class PumpManager:
             return manager.get_pump_status(pump_info.address, pump_id)
         except Exception as e:
             self.logger.error(f"Error getting status for pump {pump_id}: {str(e)}")
+            return None
+
+    def get_transaction_data(self, pump_id: int) -> Optional[TransactionData]:
+        """Get transaction data for a specific pump"""
+        if pump_id not in self.pumps:
+            return None
+
+        try:
+            pump_info = self.pumps[pump_id]
+            manager = self.managers.get(pump_info.com_port)
+            if not manager:
+                manager = TwoWireManagerRegistry.get_manager(pump_info.com_port)
+                self.managers[pump_info.com_port] = manager
+
+            return manager.get_transaction_data(pump_info.address, pump_id)
+        except Exception as e:
+            self.logger.error(
+                f"Error getting transaction data for pump {pump_id}: {str(e)}"
+            )
             return None
 
     def get_all_pump_statuses(self) -> Dict[int, PumpStatusResponse]:

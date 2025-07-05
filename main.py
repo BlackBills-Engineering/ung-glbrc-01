@@ -13,6 +13,7 @@ from models import (
     PumpDiscoveryResult,
     CommandRequest,
     CommandResponse,
+    TransactionData,
 )
 from pump_manager import PumpManager
 
@@ -263,6 +264,50 @@ async def get_pump_status(pump_id: int = Path(..., description="Pump ID", ge=1))
         raise HTTPException(status_code=404, detail=f"Pump {pump_id} not found")
 
     return status
+
+
+@app.get(
+    "/api/pumps/{pump_id}/transaction",
+    response_model=TransactionData,
+    tags=["Pump Information"],
+    summary="Get Pump Transaction Data",
+    description="""
+         Get transaction data from a specific pump.
+         
+         Returns:
+         - Volume dispensed
+         - Price per unit
+         - Total amount
+         - Grade dispensed
+         - Transaction timestamp
+         
+         Note: This command requests transaction data using the Two-Wire Protocol.
+         Some pumps may only provide transaction data after a sale is completed.
+         """,
+)
+async def get_pump_transaction(pump_id: int = Path(..., description="Pump ID", ge=1)):
+    """
+    Get transaction data from a specific pump.
+
+    This endpoint sends a transaction data request to the pump and returns:
+    - Volume dispensed
+    - Price per unit
+    - Total money amount
+    - Grade selected
+    - Transaction timestamp
+    """
+    if not pump_manager:
+        raise HTTPException(status_code=500, detail="Pump manager not initialized")
+
+    transaction_data = pump_manager.get_transaction_data(pump_id)
+    if not transaction_data:
+        raise HTTPException(
+            status_code=404,
+            detail=f"No transaction data available for pump {pump_id}. "
+            f"Pump may not exist or no transaction in progress/completed.",
+        )
+
+    return transaction_data
 
 
 @app.get(
