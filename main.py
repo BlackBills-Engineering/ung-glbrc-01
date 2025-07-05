@@ -16,6 +16,8 @@ from models import (
 )
 from pump_manager import PumpManager
 
+COMPORT = "/dev/ttyS0"
+
 
 logging.basicConfig(
     level=logging.DEBUG,
@@ -174,7 +176,7 @@ async def discover_pumps(
             )
 
         result = pump_manager.auto_discover_and_manage(
-            com_ports=[os.getenv("COM_PORT", "")],
+            com_ports=[COMPORT],
             address_range=(address_range_start, address_range_end),
             timeout=timeout,
         )
