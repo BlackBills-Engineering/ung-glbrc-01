@@ -6,7 +6,7 @@ import logging
 from enum import Enum
 from typing import Tuple
 
-COM_PORT = "COM3"
+COM_PORT = "/dev/ttyS0"
 BAUDRATE = 9600
 TIMEOUT = 1.0
 ADDRESS_RANGE = (1, 16)
